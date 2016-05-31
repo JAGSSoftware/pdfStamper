@@ -15,9 +15,9 @@ import com.itextpdf.text.Font;
  * configuration properties and makes them available to the utility.
  * In case of a property loading error, it internally loads a default configuration.
  * To load the appropriate configuration, just make use of the corresponding enumeration value:
- * <code><pre>
+ * <code>
  * Configuration configuration = Configuration.INSTANCE_RELEASE;
- * </pre></code>
+ * </code>
  *
  * @author Jose A. Garcia Sanchez
  */
