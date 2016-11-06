@@ -53,7 +53,7 @@ different expected formats.
 
 * Preliminary
 
-    itemId=<\Id of the item to whom the document belongs\>
+    itemId=\<Id of the item to whom the document belongs\>
     itemRevisionId=\<RevisionId of the item to whom the document belongs\>
     creationDate=\<Creation date of the document, in format yyyy-MM-dd HH:mm\>
     watermark=\<Watermark text, optional\>
