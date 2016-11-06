@@ -13,8 +13,12 @@
  */
 package org.jag.pdfstamper.stamp;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.Properties;
 
+import com.google.common.base.MoreObjects;
 import com.google.common.base.Strings;
 
 /**
@@ -37,44 +41,30 @@ public class ReleaseInfoStamp {
         this.approvalDate = builder.approvalDate;
     }
 
-    /**
-     * @return
-     */
+    public ReleaseInfoStamp(final Properties properties) {
+        this(new ReleaseInfoStamp.Builder(properties));
+    }
+
     public String creator() {
         return this.creator;
     }
 
-    /**
-     * @return
-     */
     public String reviewer() {
         return this.reviewer;
     }
 
-    /**
-     * @return
-     */
     public String approver() {
         return this.approver;
     }
 
-    /**
-     * @return
-     */
     public String itemId() {
         return this.itemId;
     }
 
-    /**
-     * @return
-     */
     public String itemRevisionId() {
         return this.itemRevisionId;
     }
 
-    /**
-     * @return
-     */
     public Date approvalDate() {
         if (approvalDate == null) {
             return null;
@@ -82,13 +72,46 @@ public class ReleaseInfoStamp {
         return new Date(approvalDate.getTime());
     }
 
+    @Override
+    public String toString() {
+        return MoreObjects.toStringHelper(this).add("creator", creator).add("reviewer", reviewer)
+                .add("approver", approver).add("itemId", itemId).add("itemRevisionId", itemRevisionId)
+                .add("approvalDate", approvalDate).toString();
+    }
+
     static class Builder {
+        private static final String CREATOR_KEY = "creator";
+        private static final String REVIEWER_KEY = "reviewer";
+        private static final String APPROVER_KEY = "approver";
+        private static final String ITEM_ID_KEY = "itemId";
+        private static final String ITEM_REVISION_ID_KEY = "itemRevisionId";
+        private static final String APPROVAL_DATE_KEY = "approvalDate";
+
         private String creator;
         private String reviewer;
         private String approver;
         private String itemId;
         private String itemRevisionId;
         private Date approvalDate;
+
+        private Builder(final Properties properties) {
+            this();
+            creator(properties.getProperty(CREATOR_KEY));
+            reviewer(properties.getProperty(REVIEWER_KEY));
+            approver(properties.getProperty(APPROVER_KEY));
+            itemId(properties.getProperty(ITEM_ID_KEY));
+            itemRevisionId(properties.getProperty(ITEM_REVISION_ID_KEY));
+            try {
+                final Date date = new SimpleDateFormat("yyyy-MM-dd").parse(properties.getProperty(APPROVAL_DATE_KEY));
+                approvalDate(date);
+            } catch (ParseException | NullPointerException e) {
+                approvalDate(null);
+            }
+        }
+
+        public Builder() {
+            // Empty body
+        }
 
         public Builder creator(final String name) {
             this.creator = name;
@@ -121,7 +144,7 @@ public class ReleaseInfoStamp {
         }
 
         public Builder approvalDate(final Date date) {
-            this.approvalDate = new Date(date.getTime());
+            this.approvalDate = date;
 
             return this;
         }

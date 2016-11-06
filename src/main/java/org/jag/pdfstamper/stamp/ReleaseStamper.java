@@ -45,10 +45,11 @@ class ReleaseStamper implements Stamper {
         final Properties properties = new Properties();
         properties.load(new FileInputStream(stampFilename));
 
-        infoStamp = new ReleaseInfoStamp.Builder().creator(properties.getProperty("creator"))
-                .reviewer(properties.getProperty("reviewer")).approver(properties.getProperty("approver"))
-                .itemId(properties.getProperty("itemId")).itemRevisionId(properties.getProperty("itemRevisionId"))
-                .approvalDate(getApprovalDateFromProperties(properties)).build();
+        // infoStamp = new ReleaseInfoStamp.Builder().creator(properties.getProperty("creator"))
+        // .reviewer(properties.getProperty("reviewer")).approver(properties.getProperty("approver"))
+        // .itemId(properties.getProperty("itemId")).itemRevisionId(properties.getProperty("itemRevisionId"))
+        // .approvalDate(getApprovalDateFromProperties(properties)).build();
+        infoStamp = new ReleaseInfoStamp(properties);
         watermark = properties.getProperty("watermark");
     }
 
