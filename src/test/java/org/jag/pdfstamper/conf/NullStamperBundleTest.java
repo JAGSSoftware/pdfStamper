@@ -1,5 +1,5 @@
 /*
- * (c) 2013 - Areva Wind DE
+ * (c) 2013 - Jose A. Garcia Sanchez
  */
 package org.jag.pdfstamper.conf;
 
@@ -52,8 +52,7 @@ public class NullStamperBundleTest {
     }
 
     /**
-     * Test method for
-     * {@link NullStamperBundle#getProperty(java.lang.String, java.lang.String)}.
+     * Test method for {@link NullStamperBundle#getProperty(java.lang.String, java.lang.String)}.
      */
     @Test
     public void testGetPropertyStringString() {

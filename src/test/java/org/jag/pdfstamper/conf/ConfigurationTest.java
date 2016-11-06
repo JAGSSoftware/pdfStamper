@@ -1,5 +1,5 @@
 /*
- * (c) 2013 - Areva Wind DE
+ * (c) 2013 - Jose A. Garcia Sanchez
  */
 package org.jag.pdfstamper.conf;
 
@@ -16,7 +16,7 @@ import java.util.GregorianCalendar;
 import org.junit.Before;
 import org.junit.Ignore;
 import org.junit.Test;
-//import org.powermock.api.mockito.PowerMockito;
+// import org.powermock.api.mockito.PowerMockito;
 
 import com.itextpdf.text.Font;
 
@@ -43,10 +43,10 @@ public class ConfigurationTest {
     @Test
     @Ignore
     public void testConfigurationNotFound() throws Exception {
-//        final Configuration localConfiguration = Configuration.INSTANCE_WATERMARK;
+        // final Configuration localConfiguration = Configuration.INSTANCE_WATERMARK;
 
-//        final Field bundle = PowerMockito.field(Configuration.class, "bundle");
-//        assertEquals(NullStamperBundle.class, bundle.getType());
+        // final Field bundle = PowerMockito.field(Configuration.class, "bundle");
+        // assertEquals(NullStamperBundle.class, bundle.getType());
     }
 
     /**
@@ -134,7 +134,7 @@ public class ConfigurationTest {
      */
     @Test
     public void testGetIntArrayProperty() {
-        final int[] expected = new int[] {128, 128, 128 };
+        final int[] expected = new int[]{128, 128, 128};
         final int[] current = configuration.getIntArrayProperty("GRAY");
 
         assertArrayEquals(expected, current);
@@ -153,12 +153,12 @@ public class ConfigurationTest {
         assertEquals(0.5f, configuration.getFloatProperty("table.xpos"), PRECISION);
     }
 
-    @Test(expected=NullPointerException.class)
+    @Test(expected = NullPointerException.class)
     public void testGetFloatPropertyStringNull() {
         configuration.getFloatProperty("table.xpos.null");
     }
 
-    @Test(expected=NumberFormatException.class)
+    @Test(expected = NumberFormatException.class)
     public void testGetFloatPropertyStringFormatException() {
         configuration.getFloatProperty("GRAY");
     }
@@ -199,7 +199,8 @@ public class ConfigurationTest {
         final DateFormat dateFormat = configuration.getDateFormat("input.date.FORMAT");
 
         assertNotNull("is null", dateFormat);
-        assertEquals("not equal to", expected.format(referenceDate.getTime()), dateFormat.format(referenceDate.getTime()));
+        assertEquals("not equal to", expected.format(referenceDate.getTime()),
+                dateFormat.format(referenceDate.getTime()));
     }
 
     @Test(expected = NullPointerException.class)

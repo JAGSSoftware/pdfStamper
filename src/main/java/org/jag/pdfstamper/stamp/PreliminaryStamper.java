@@ -1,5 +1,5 @@
 /*
- * (c) 2013 - Areva Wind DE
+ * (c) 2013 - Jose A. Garcia Sanchez
  */
 package org.jag.pdfstamper.stamp;
 
@@ -12,9 +12,9 @@ import java.util.Date;
 import java.util.Properties;
 import java.util.logging.Logger;
 
-import com.itextpdf.text.pdf.PdfReader;
-
 import org.jag.pdfstamper.conf.Configuration;
+
+import com.itextpdf.text.pdf.PdfReader;
 
 /**
  * @author Jose A. Garcia
@@ -24,7 +24,7 @@ class PreliminaryStamper implements Stamper {
     private static final Configuration CONFIGURATION = Configuration.INSTANCE_PRELIMINARY;
     private final PreliminaryInfoStamp infoStamp;
     private final String watermark;
-//    private final WatermarkInfoStamp watermarkInfoStamp;
+    // private final WatermarkInfoStamp watermarkInfoStamp;
 
     /**
      * @param stampFilename
@@ -42,8 +42,6 @@ class PreliminaryStamper implements Stamper {
         this.watermark = properties.getProperty("watermark");
     }
 
-
-
     /**
      * @param properties
      * @return
@@ -51,7 +49,8 @@ class PreliminaryStamper implements Stamper {
     public Date getCreationDateFromProperties(final Properties properties) {
         Date approvalDate;
         try {
-            approvalDate = new SimpleDateFormat(CONFIGURATION.getProperty("input.date.FORMAT")).parse(properties.getProperty("creationDate"));
+            approvalDate = new SimpleDateFormat(CONFIGURATION.getProperty("input.date.FORMAT"))
+                    .parse(properties.getProperty("creationDate"));
         } catch (ParseException e) {
             LOGGER.warning(e.getMessage());
             approvalDate = new Date();
@@ -60,7 +59,9 @@ class PreliminaryStamper implements Stamper {
         return approvalDate;
     }
 
-    /* (non-Javadoc)
+    /*
+     * (non-Javadoc)
+     * 
      * @see de.areva.pdfstamper.stamp.Stamper#stamp(com.itextpdf.text.pdf.PdfReader)
      */
     @Override

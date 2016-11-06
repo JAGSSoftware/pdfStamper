@@ -1,5 +1,5 @@
 /*
- * (c) 2013 - Areva Wind DE
+ * (c) 2013 - Jose A. Garcia Sanchez
  */
 package org.jag.pdfstamper.stamp;
 
@@ -14,7 +14,8 @@ public final class StamperFactory {
     private static final Logger LOGGER = Logger.getLogger("pdfStamper");
 
     /** Constructor. */
-    private StamperFactory() {}
+    private StamperFactory() {
+    }
 
     /**
      * @param stampType Type of stamper

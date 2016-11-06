@@ -1,5 +1,5 @@
 /*
- * (c) 2013 - Areva Wind DE
+ * (c) 2013 - Jose A. Garcia
  */
 package org.jag.pdfstamper.conf;
 
@@ -102,7 +102,7 @@ public class BundleLoaderTest {
      */
     @Test
     public void testGetIntArrayProperty() {
-        final int[] expected = {1, 2, 3 };
+        final int[] expected = {1, 2, 3};
 
         assertArrayEquals(expected, bundle.getIntArrayProperty("intArrayProperty"));
     }
@@ -120,12 +120,13 @@ public class BundleLoaderTest {
      */
     @Test
     public void testGetIntArrayProperty1() {
-        final int[] expected = {1977 };
+        final int[] expected = {1977};
 
         assertArrayEquals(expected, bundle.getIntArrayProperty("intArrayProperty1"));
     }
 
-    @Test public void testTokensFromArrayProperty() {
+    @Test
+    public void testTokensFromArrayProperty() {
         final List<String> tokens = bundle.tokensFromArrayProperty("123,456, 789");
         final String[] expected = new String[]{"123", "456", "789"};
 
@@ -209,7 +210,7 @@ public class BundleLoaderTest {
      */
     @Test
     public void testGetFloatArrayProperty() {
-        final float[] expected = {1.1f, 2.2f, 3.3f };
+        final float[] expected = {1.1f, 2.2f, 3.3f};
         assertArrayFloatEquals(expected, bundle.getFloatArrayProperty("floatArrayProperty"));
     }
 

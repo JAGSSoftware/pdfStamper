@@ -1,5 +1,5 @@
 /*
- * (c) 2013 - Autoneum AG
+ * (c) 2013 - Jose A. Garcia Sanchez
  */
 package org.jag.pdfstamper.conf;
 
@@ -11,10 +11,9 @@ import com.itextpdf.text.Font;
 import com.itextpdf.text.FontFactory;
 
 /**
- * Implementation of the StamperBundle interface following the <a
- * href="http://en.wikipedia.org/wiki/Null_Object_pattern" target="_blank">Null Object</a> pattern, providing default
- * values for the case
- * the real bundle could not be created.
+ * Implementation of the StamperBundle interface following the
+ * <a href="http://en.wikipedia.org/wiki/Null_Object_pattern" target="_blank">Null Object</a> pattern, providing default
+ * values for the case the real bundle could not be created.
  *
  * @author Jose A. Garcia Sanchez
  * @note Null Object pattern
@@ -30,8 +29,7 @@ final class NullStamperBundle implements StamperBundle {
     }
 
     /**
-     * @return Blank value
-     * {@inheritDoc}
+     * @return Blank value {@inheritDoc}
      */
     @Override
     public String getProperty(final String name) {
@@ -40,8 +38,7 @@ final class NullStamperBundle implements StamperBundle {
     }
 
     /**
-     * @return defaultValue
-     * {@inheritDoc}
+     * @return defaultValue {@inheritDoc}
      */
     @Override
     public String getProperty(final String name, final String defaultValue) {
@@ -50,8 +47,7 @@ final class NullStamperBundle implements StamperBundle {
     }
 
     /**
-     * @return false
-     * {@inheritDoc}
+     * @return false {@inheritDoc}
      */
     @Override
     public boolean getBooleanProperty(final String name) {
@@ -60,8 +56,7 @@ final class NullStamperBundle implements StamperBundle {
     }
 
     /**
-     * @return 0
-     * {@inheritDoc}
+     * @return 0 {@inheritDoc}
      */
     @Override
     public int getIntProperty(final String name) {
@@ -70,8 +65,7 @@ final class NullStamperBundle implements StamperBundle {
     }
 
     /**
-     * @return defaultValue
-     * {@inheritDoc}
+     * @return defaultValue {@inheritDoc}
      */
     @Override
     public int getIntProperty(final String name, final int defaultValue) {
@@ -80,8 +74,7 @@ final class NullStamperBundle implements StamperBundle {
     }
 
     /**
-     * @return empty array
-     * {@inheritDoc}
+     * @return empty array {@inheritDoc}
      */
     @Override
     public int[] getIntArrayProperty(final String name) {
@@ -90,8 +83,7 @@ final class NullStamperBundle implements StamperBundle {
     }
 
     /**
-     * @return 0.0
-     * {@inheritDoc}
+     * @return 0.0 {@inheritDoc}
      */
     @Override
     public float getFloatProperty(final String name) {
@@ -100,8 +92,7 @@ final class NullStamperBundle implements StamperBundle {
     }
 
     /**
-     * @return defaultValue
-     * {@inheritDoc}
+     * @return defaultValue {@inheritDoc}
      */
     @Override
     public float getFloatProperty(final String name, final float defaultValue) {
@@ -110,8 +101,7 @@ final class NullStamperBundle implements StamperBundle {
     }
 
     /**
-     * @return empty array
-     * {@inheritDoc}
+     * @return empty array {@inheritDoc}
      */
     @Override
     public float[] getFloatArrayProperty(final String name) {
@@ -120,8 +110,7 @@ final class NullStamperBundle implements StamperBundle {
     }
 
     /**
-     * @return default {@link DateFormat} instance from system
-     * {@inheritDoc}
+     * @return default {@link DateFormat} instance from system {@inheritDoc}
      */
     @Override
     public DateFormat getDateFormat(final String name) {
@@ -130,8 +119,7 @@ final class NullStamperBundle implements StamperBundle {
     }
 
     /**
-     * @return default {@link Font} using Helvetica font family
-     * {@inheritDoc}
+     * @return default {@link Font} using Helvetica font family {@inheritDoc}
      */
     @Override
     public Font getFont(final String name) {
@@ -142,8 +130,7 @@ final class NullStamperBundle implements StamperBundle {
     }
 
     /**
-     * @return {@link BaseColor.BLACK} color
-     * {@inheritDoc}
+     * @return {@link BaseColor.BLACK} color {@inheritDoc}
      */
     @Override
     public BaseColor getColor(final String name) {

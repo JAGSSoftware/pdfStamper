@@ -1,9 +1,9 @@
 /*
- * (c) 2014 - Areva Wind DE
+ * (c) 2014 - Jose A. Garcia Sanchez
  */
 package org.jag.pdfstamper.stamp;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.fail;
 
 import org.junit.After;
 import org.junit.AfterClass;
@@ -15,6 +15,7 @@ import org.junit.Test;
 /**
  * @author Jose A. Garcia
  */
+@Ignore
 public class PreliminaryInfoStampTest {
 
     /**
@@ -49,7 +50,6 @@ public class PreliminaryInfoStampTest {
      * Test method for {@link PreliminaryInfoStamp#itemId()}.
      */
     @Test
-    @Ignore
     public void testItemId() {
         fail("Not yet implemented");
     }
@@ -58,7 +58,6 @@ public class PreliminaryInfoStampTest {
      * Test method for {@link PreliminaryInfoStamp#itemRevisionId()}.
      */
     @Test
-    @Ignore
     public void testItemRevisionId() {
         fail("Not yet implemented");
     }
@@ -67,7 +66,6 @@ public class PreliminaryInfoStampTest {
      * Test method for {@link PreliminaryInfoStamp#creationDate()}.
      */
     @Test
-    @Ignore
     public void testCreationDate() {
         fail("Not yet implemented");
     }

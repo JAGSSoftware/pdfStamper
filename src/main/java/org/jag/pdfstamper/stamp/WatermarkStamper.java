@@ -1,5 +1,5 @@
 /*
- * (c) 2013 - Areva Wind DE
+ * (c) 2013 - Jose A. Garcia Sanchez
  */
 package org.jag.pdfstamper.stamp;
 
@@ -28,7 +28,9 @@ class WatermarkStamper implements Stamper {
         infoStamp = new WatermarkInfoStamp(properties.getProperty("watermark"));
     }
 
-    /* (non-Javadoc)
+    /*
+     * (non-Javadoc)
+     * 
      * @see de.areva.pdfstamper.stamp.Stamper#stamp(com.itextpdf.text.pdf.PdfReader)
      */
     @Override

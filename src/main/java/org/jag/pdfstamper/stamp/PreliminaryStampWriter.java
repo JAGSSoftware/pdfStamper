@@ -1,11 +1,13 @@
 /*
- * (c) 2013 - Areva Wind DE
+ * (c) 2013 - Jose A. Garcia Sanchez
  */
 package org.jag.pdfstamper.stamp;
 
 import java.text.SimpleDateFormat;
 import java.util.EnumSet;
 import java.util.logging.Logger;
+
+import org.jag.pdfstamper.conf.Configuration;
 
 import com.itextpdf.text.DocumentException;
 import com.itextpdf.text.Element;
@@ -16,8 +18,6 @@ import com.itextpdf.text.pdf.PdfGState;
 import com.itextpdf.text.pdf.PdfPCell;
 import com.itextpdf.text.pdf.PdfPTable;
 import com.itextpdf.text.pdf.PdfReader;
-
-import org.jag.pdfstamper.conf.Configuration;
 
 /**
  * @author Jose A. Garcia
@@ -40,7 +40,8 @@ public class PreliminaryStampWriter extends AbstractStampWriter {
      * @param infoStamp
      * @param pdfReader
      */
-    protected PreliminaryStampWriter(final PreliminaryInfoStamp infoStamp, final PdfReader pdfReader, final WatermarkDecorator decorator) {
+    protected PreliminaryStampWriter(final PreliminaryInfoStamp infoStamp, final PdfReader pdfReader,
+            final WatermarkDecorator decorator) {
         super(pdfReader);
         this.infoStamp = infoStamp;
         this.stampTable = createStampTable();
@@ -57,10 +58,11 @@ public class PreliminaryStampWriter extends AbstractStampWriter {
         try {
             table.setTotalWidth(tableColumnsWidth);
 
-            table.addCell(newCell(CONFIGURATION.getProperty("creationDate.TITLE"),
-                    new SimpleDateFormat(CONFIGURATION.getProperty("output.date.FORMAT")).format(infoStamp
-                            .creationDate()),
-                    EnumSet.of(CellBorder.TOP, CellBorder.LEFT, CellBorder.RIGHT)));
+            table.addCell(
+                    newCell(CONFIGURATION.getProperty("creationDate.TITLE"),
+                            new SimpleDateFormat(CONFIGURATION.getProperty("output.date.FORMAT"))
+                                    .format(infoStamp.creationDate()),
+                            EnumSet.of(CellBorder.TOP, CellBorder.LEFT, CellBorder.RIGHT)));
             table.addCell(newCell(CONFIGURATION.getProperty("itemRevisionId.TITLE"), infoStamp.itemRevisionId(),
                     EnumSet.of(CellBorder.LEFT, CellBorder.RIGHT)));
             table.addCell(newCell(CONFIGURATION.getProperty("itemId.TITLE"), infoStamp.itemId(),
@@ -85,6 +87,7 @@ public class PreliminaryStampWriter extends AbstractStampWriter {
 
     /*
      * (non-Javadoc)
+     * 
      * @see de.areva.pdfstamper.stamp.AbstractStampWriter#write()
      */
     @Override

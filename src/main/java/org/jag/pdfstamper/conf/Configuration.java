@@ -1,5 +1,5 @@
 /*
- * (c) 2013 - Autoneum AG
+ * (c) 2013 - Jose A. Garcia Sanchez
  */
 package org.jag.pdfstamper.conf;
 
@@ -12,10 +12,9 @@ import com.itextpdf.text.Font;
 
 /**
  * Enumeration with the configuration for the different modes of operation of the utility. Each value loads its own
- * configuration properties and makes them available to the utility.
- * In case of a property loading error, it internally loads a default configuration.
- * To load the appropriate configuration, just make use of the corresponding enumeration value:
- * <code>
+ * configuration properties and makes them available to the utility. In case of a property loading error, it internally
+ * loads a default configuration. To load the appropriate configuration, just make use of the corresponding enumeration
+ * value: <code>
  * Configuration configuration = Configuration.INSTANCE_RELEASE;
  * </code>
  *
@@ -36,6 +35,7 @@ public enum Configuration implements StamperBundle {
 
     /**
      * Constructor.
+     * 
      * @param configurationFile Configuration file
      */
     Configuration(final String configurationFile) {
@@ -49,6 +49,7 @@ public enum Configuration implements StamperBundle {
 
     /*
      * (non-Javadoc)
+     * 
      * @see com.autoneum.plm2.pdfstamper.conf.StamperBundle#getProperty(java.lang.String)
      */
     @Override
@@ -58,6 +59,7 @@ public enum Configuration implements StamperBundle {
 
     /*
      * (non-Javadoc)
+     * 
      * @see com.autoneum.plm2.pdfstamper.conf.StamperBundle#getProperty(java.lang.String, java.lang.String)
      */
     @Override
@@ -67,6 +69,7 @@ public enum Configuration implements StamperBundle {
 
     /*
      * (non-Javadoc)
+     * 
      * @see com.autoneum.plm2.pdfstamper.conf.StamperBundle#getBooleanProperty(java.lang.String)
      */
     @Override
@@ -81,6 +84,7 @@ public enum Configuration implements StamperBundle {
 
     /**
      * Writes a warning entry in log with the name of the property.
+     * 
      * @param propertyName Name of the falling property
      */
     private void warning(final String propertyName) {
@@ -89,6 +93,7 @@ public enum Configuration implements StamperBundle {
 
     /*
      * (non-Javadoc)
+     * 
      * @see com.autoneum.plm2.pdfstamper.conf.StamperBundle#getIntProperty(java.lang.String)
      */
     @Override
@@ -98,6 +103,7 @@ public enum Configuration implements StamperBundle {
 
     /*
      * (non-Javadoc)
+     * 
      * @see com.autoneum.plm2.pdfstamper.conf.StamperBundle#getIntProperty(java.lang.String, int)
      */
     @Override
@@ -107,6 +113,7 @@ public enum Configuration implements StamperBundle {
 
     /*
      * (non-Javadoc)
+     * 
      * @see com.autoneum.plm2.pdfstamper.conf.StamperBundle#getIntArrayProperty(java.lang.String)
      */
     @Override
@@ -116,6 +123,7 @@ public enum Configuration implements StamperBundle {
 
     /*
      * (non-Javadoc)
+     * 
      * @see com.autoneum.plm2.pdfstamper.conf.StamperBundle#getFloatProperty(java.lang.String)
      */
     @Override
@@ -130,6 +138,7 @@ public enum Configuration implements StamperBundle {
 
     /*
      * (non-Javadoc)
+     * 
      * @see com.autoneum.plm2.pdfstamper.conf.StamperBundle#getFloatProperty(java.lang.String, float)
      */
     @Override
@@ -139,6 +148,7 @@ public enum Configuration implements StamperBundle {
 
     /*
      * (non-Javadoc)
+     * 
      * @see com.autoneum.plm2.pdfstamper.conf.StamperBundle#getFloatArrayProperty(java.lang.String)
      */
     @Override
@@ -148,6 +158,7 @@ public enum Configuration implements StamperBundle {
 
     /*
      * (non-Javadoc)
+     * 
      * @see com.autoneum.plm2.pdfstamper.conf.StamperBundle#getDateFormat(java.lang.String)
      */
     @Override
@@ -162,6 +173,7 @@ public enum Configuration implements StamperBundle {
 
     /*
      * (non-Javadoc)
+     * 
      * @see com.autoneum.plm2.pdfstamper.conf.StamperBundle#getFont(java.lang.String)
      */
     @Override
@@ -171,6 +183,7 @@ public enum Configuration implements StamperBundle {
 
     /*
      * (non-Javadoc)
+     * 
      * @see com.autoneum.plm2.pdfstamper.conf.StamperBundle#getColor(java.lang.String)
      */
     @Override

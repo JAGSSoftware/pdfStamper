@@ -1,9 +1,9 @@
 /*
- * (c) 2013 - Areva Wind DE
+ * (c) 2013 - Jose A. Garcia Sanchez
  */
 package org.jag.pdfstamper;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.fail;
 
 import org.junit.After;
 import org.junit.AfterClass;
@@ -16,6 +16,7 @@ import org.junit.Test;
  * @author Jose A. Garcia
  *
  */
+@Ignore
 public class MainTest {
 
     /**
@@ -50,7 +51,6 @@ public class MainTest {
      * Test method for {@link Main#main(java.lang.String[])}.
      */
     @Test
-    @Ignore
     public void testMain() {
         fail("Not yet implemented");
     }
@@ -59,7 +59,6 @@ public class MainTest {
      * Test method for {@link Main#Main()}.
      */
     @Test
-    @Ignore
     public void testMain1() {
         fail("Not yet implemented");
     }
@@ -68,7 +67,6 @@ public class MainTest {
      * Test method for {@link Main#getOptions()}.
      */
     @Test
-    @Ignore
     public void testGetOptions() {
         fail("Not yet implemented");
     }
@@ -77,7 +75,6 @@ public class MainTest {
      * Test method for {@link Main#loadInfoStamp()}.
      */
     @Test
-    @Ignore
     public void testLoadInfoStamp() {
         fail("Not yet implemented");
     }
@@ -86,7 +83,6 @@ public class MainTest {
      * Test method for {@link Main#printHelp()}.
      */
     @Test
-    @Ignore
     public void testPrintHelp() {
         fail("Not yet implemented");
     }
@@ -95,7 +91,6 @@ public class MainTest {
      * Test method for {@link Main#open()}.
      */
     @Test
-    @Ignore
     public void testOpen() {
         fail("Not yet implemented");
     }
@@ -104,7 +99,6 @@ public class MainTest {
      * Test method for {@link Main#stamp()}.
      */
     @Test
-    @Ignore
     public void testStamp() {
         fail("Not yet implemented");
     }
@@ -113,9 +107,7 @@ public class MainTest {
      * Test method for {@link Main#close()}.
      */
     @Test
-    @Ignore
     public void testClose() {
         fail("Not yet implemented");
     }
-
 }

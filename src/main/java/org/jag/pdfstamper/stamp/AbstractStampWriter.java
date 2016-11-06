@@ -1,5 +1,5 @@
 /*
- * (c) 2013 - Areva Wind DE
+ * (c) 2013 - Jose A. Garcia Sanchez
  */
 package org.jag.pdfstamper.stamp;
 
@@ -27,6 +27,7 @@ abstract class AbstractStampWriter implements StampWriter {
 
     /*
      * (non-Javadoc)
+     * 
      * @see de.areva.pdfstamper.stamp.StampWriter#close()
      */
     @Override

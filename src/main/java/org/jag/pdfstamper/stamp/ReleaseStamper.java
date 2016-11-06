@@ -1,5 +1,5 @@
 /*
- * (c) 2013 - Areva Wind DE
+ * (c) 2013 - Jose A. Garcia Sanchez
  */
 package org.jag.pdfstamper.stamp;
 
@@ -12,9 +12,9 @@ import java.util.Date;
 import java.util.Properties;
 import java.util.logging.Logger;
 
-import com.itextpdf.text.pdf.PdfReader;
-
 import org.jag.pdfstamper.conf.Configuration;
+
+import com.itextpdf.text.pdf.PdfReader;
 
 /**
  * @author Jose A. Garcia
@@ -48,8 +48,8 @@ class ReleaseStamper implements Stamper {
     public Date getApprovalDateFromProperties(final Properties properties) {
         Date approvalDate;
         try {
-            approvalDate = new SimpleDateFormat(CONFIGURATION.getProperty("input.date.FORMAT")).parse(properties
-                    .getProperty("approvalDate"));
+            approvalDate = new SimpleDateFormat(CONFIGURATION.getProperty("input.date.FORMAT"))
+                    .parse(properties.getProperty("approvalDate"));
         } catch (ParseException e) {
             LOGGER.warning(e.getMessage());
             approvalDate = new Date();

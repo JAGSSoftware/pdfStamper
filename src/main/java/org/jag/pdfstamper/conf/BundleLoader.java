@@ -1,5 +1,5 @@
 /*
- * (c) 2013 - Autoneum AG
+ * (c) 2013 - Jose A. Garcia
  */
 package org.jag.pdfstamper.conf;
 
@@ -14,7 +14,6 @@ import java.util.StringTokenizer;
 import java.util.logging.Logger;
 
 import com.itextpdf.text.BaseColor;
-
 import com.itextpdf.text.Font;
 import com.itextpdf.text.FontFactory;
 
@@ -239,8 +238,8 @@ class BundleLoader implements StamperBundle {
      * @return {@link Font} property
      */
     private Font getBaseFont(final String name) {
-        return FontFactory.getFont(getProperty(name), getProperty(name + ".encoding"), getBooleanProperty(name
-                + ".embedded"));
+        return FontFactory.getFont(getProperty(name), getProperty(name + ".encoding"),
+                getBooleanProperty(name + ".embedded"));
     }
 
     /*

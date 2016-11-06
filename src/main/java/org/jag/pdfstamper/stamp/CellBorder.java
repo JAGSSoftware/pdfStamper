@@ -1,5 +1,5 @@
 /*
- * (c) 2013 - Areva Wind DE
+ * (c) 2013 - Jose A. Garcia Sanchez
  */
 package org.jag.pdfstamper.stamp;
 
@@ -7,20 +7,18 @@ import com.itextpdf.text.pdf.PdfPCell;
 
 /**
  * Enumeration with the four types of cell borders.
+ * 
  * @author Jose A. Garcia
  */
 enum CellBorder {
-    LEFT(PdfPCell.LEFT),
-    RIGHT(PdfPCell.RIGHT),
-    TOP(PdfPCell.TOP),
-    BOTTOM(PdfPCell.BOTTOM);
+    LEFT(PdfPCell.LEFT), RIGHT(PdfPCell.RIGHT), TOP(PdfPCell.TOP), BOTTOM(PdfPCell.BOTTOM);
 
     private final int value;
 
     /**
      * @param value internal value of the enumeration element
      */
-    CellBorder(final int value) {
+    private CellBorder(final int value) {
         this.value = value;
     }
 

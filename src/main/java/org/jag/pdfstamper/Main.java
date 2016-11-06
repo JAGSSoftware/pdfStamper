@@ -1,5 +1,5 @@
 /*
- * (c) 2013 - Areva Wind DE
+ * (c) 2013 - Jose A. Garcia Sanchez
  */
 package org.jag.pdfstamper;
 
@@ -14,13 +14,12 @@ import org.apache.commons.cli.Option;
 import org.apache.commons.cli.Options;
 import org.apache.commons.cli.ParseException;
 import org.apache.commons.cli.PosixParser;
-
-import com.itextpdf.text.DocumentException;
-import com.itextpdf.text.pdf.PdfReader;
-
 import org.jag.pdfstamper.stamp.StampType;
 import org.jag.pdfstamper.stamp.StampWriter;
 import org.jag.pdfstamper.stamp.StamperFactory;
+
+import com.itextpdf.text.DocumentException;
+import com.itextpdf.text.pdf.PdfReader;
 
 /**
  * Entry point of the tool to stamp PDF's.
@@ -50,12 +49,11 @@ public class Main {
     private static final String STAMPTYPE_ARGUMENT = "stamptype";
 
     /** Array of command line arguments for the utility. */
-    private static final Option[] OPTION_ARRAY = new Option[] {
+    private static final Option[] OPTION_ARRAY = new Option[]{
             new Option(IN_ARGUMENT, INPUT_ARGUMENT, true, "input file"),
             new Option(OUT_ARGUMENT, OUTPUT_ARGUMENT, true, "output file"),
             new Option(STAMPFILE_ARGUMENT, true, "properties file with stamping information"),
-            new Option(STAMPTYPE_ARGUMENT, true, "type of stamp: {release | preliminary | watermark}"),
-    };
+            new Option(STAMPTYPE_ARGUMENT, true, "type of stamp: {release | preliminary | watermark}"),};
 
     /** Collection of program options. */
     private final transient Options options = new Options();

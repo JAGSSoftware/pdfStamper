@@ -1,5 +1,5 @@
 /*
- * (c) 2013 - Areva Wind DE
+ * (c) 2013 - Jose A. Garcia Sanchez
  */
 package org.jag.pdfstamper.stamp;
 
@@ -10,9 +10,7 @@ import java.util.Map;
  * @author Jose A. Garcia
  */
 public enum StampType {
-    RELEASE("release"),
-    PRELIMINARY("preliminary"),
-    WATERMARK("watermark");
+    RELEASE("release"), PRELIMINARY("preliminary"), WATERMARK("watermark");
 
     private static final Map<String, StampType> map = new HashMap<String, StampType>();
     private final String type;

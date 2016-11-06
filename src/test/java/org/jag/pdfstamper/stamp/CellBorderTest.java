@@ -1,5 +1,5 @@
 /*
- * (c) 2014 - Areva Wind DE
+ * (c) 2014 - Jose A. Garcia Sanchez
  */
 package org.jag.pdfstamper.stamp;
 

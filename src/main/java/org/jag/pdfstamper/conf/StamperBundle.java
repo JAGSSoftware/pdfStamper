@@ -1,5 +1,5 @@
 /*
- * (c) 2013 - Autoneum Holding AG
+ * (c) 2013 - Jose A. Garcia Sanchez
  */
 package org.jag.pdfstamper.conf;
 
@@ -9,8 +9,8 @@ import com.itextpdf.text.BaseColor;
 import com.itextpdf.text.Font;
 
 /**
- * Definition of the bundle configuration for stamping.
- * It contains different methods to retrieve different properties from configuration.
+ * Definition of the bundle configuration for stamping. It contains different methods to retrieve different properties
+ * from configuration.
  *
  * @author Jose A. Garcia Sanchez
  * @opt hide com.itextpdf.*
