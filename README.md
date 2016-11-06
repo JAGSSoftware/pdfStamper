@@ -49,21 +49,21 @@ different expected formats.
 
 * Watermark
 
-    watermark=\<Watermark text\>
+    watermark=[Watermark text]
 
 * Preliminary
 
-    itemId=\<Id of the item to whom the document belongs\>
-    itemRevisionId=\<RevisionId of the item to whom the document belongs\>
-    creationDate=\<Creation date of the document, in format yyyy-MM-dd HH:mm\>
-    watermark=\<Watermark text, optional\>
+    itemId=[Id of the item to whom the document belongs]
+    itemRevisionId=[RevisionId of the item to whom the document belongs]
+    creationDate=[Creation date of the document, in format yyyy-MM-dd HH:mm]
+    watermark=[Watermark text, optional]
 
 * Release
 
-    creator=\<Creator name of the item\>
-    reviewer=\<Reviewer name of the item\>
-    approver=\<Approver name of the item\>
-    itemId=\<Id of the item to whom the document belongs\>
-    itemRevisionId=\<RevisionId of the item to whom the document belongs\>
-    approvalDate=\<Approval date of the document, in format yyyy-MM-dd\>
-    watermark=\<Watermark text, optional\>
+    creator=[Creator name of the item]
+    reviewer=[Reviewer name of the item]
+    approver=[Approver name of the item]
+    itemId=[Id of the item to whom the document belongs]
+    itemRevisionId=[RevisionId of the item to whom the document belongs]
+    approvalDate=[Approval date of the document, in format yyyy-MM-dd]
+    watermark=[Watermark text, optional]
