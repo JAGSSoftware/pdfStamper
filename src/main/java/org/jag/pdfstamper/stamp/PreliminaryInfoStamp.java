@@ -15,6 +15,8 @@ package org.jag.pdfstamper.stamp;
 
 import java.util.Date;
 
+import com.google.common.base.Strings;
+
 /**
  * @author Jose A. Garcia
  */
@@ -24,8 +26,8 @@ class PreliminaryInfoStamp {
     private final Date creationDate;
 
     private PreliminaryInfoStamp(final PreliminaryInfoStamp.Builder builder) {
-        this.itemId = builder.itemId;
-        this.itemRevisionId = builder.itemRevisionId;
+        this.itemId = Strings.nullToEmpty(builder.itemId);
+        this.itemRevisionId = Strings.nullToEmpty(builder.itemRevisionId);
         this.creationDate = builder.creationDate;
     }
 
@@ -47,6 +49,9 @@ class PreliminaryInfoStamp {
      * @return
      */
     public Date creationDate() {
+        if (creationDate == null) {
+            return null;
+        }
         return new Date(creationDate.getTime());
     }
 
@@ -54,8 +59,8 @@ class PreliminaryInfoStamp {
      * @author Jose A. Garcia
      */
     static class Builder {
-        private String itemId = "";
-        private String itemRevisionId = "";
+        private String itemId;
+        private String itemRevisionId;
         private Date creationDate;
 
         /**

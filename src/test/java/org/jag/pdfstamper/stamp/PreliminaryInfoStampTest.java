@@ -13,70 +13,66 @@
  */
 package org.jag.pdfstamper.stamp;
 
-import static org.junit.Assert.fail;
+import static com.google.common.truth.Truth.assertThat;
 
-import org.junit.After;
-import org.junit.AfterClass;
+import java.util.Date;
+
 import org.junit.Before;
-import org.junit.BeforeClass;
-import org.junit.Ignore;
 import org.junit.Test;
 
 /**
  * @author Jose A. Garcia
  */
-@Ignore
 public class PreliminaryInfoStampTest {
+    private PreliminaryInfoStamp.Builder underTest;
 
-    /**
-     * @throws java.lang.Exception
-     */
-    @BeforeClass
-    public static void setUpBeforeClass() throws Exception {
-    }
-
-    /**
-     * @throws java.lang.Exception
-     */
-    @AfterClass
-    public static void tearDownAfterClass() throws Exception {
-    }
-
-    /**
-     * @throws java.lang.Exception
-     */
     @Before
-    public void setUp() throws Exception {
+    public void setUp() {
+        underTest = new PreliminaryInfoStamp.Builder();
     }
 
-    /**
-     * @throws java.lang.Exception
-     */
-    @After
-    public void tearDown() throws Exception {
-    }
-
-    /**
-     * Test method for {@link PreliminaryInfoStamp#itemId()}.
-     */
     @Test
-    public void testItemId() {
-        fail("Not yet implemented");
+    public void createEmptyInfo() {
+        final PreliminaryInfoStamp infoStamp = underTest.build();
+
+        assertThat(infoStamp).isNotNull();
+        assertThat(infoStamp.itemId()).isEmpty();
+        assertThat(infoStamp.itemRevisionId()).isEmpty();
+        assertThat(infoStamp.creationDate()).isNull();
     }
 
-    /**
-     * Test method for {@link PreliminaryInfoStamp#itemRevisionId()}.
-     */
     @Test
-    public void testItemRevisionId() {
-        fail("Not yet implemented");
+    public void createInfoWithItemId() {
+        final PreliminaryInfoStamp infoStamp = underTest.itemId("ITEM-ID#13").build();
+
+        assertThat(infoStamp).isNotNull();
+        assertThat(infoStamp.itemId()).isNotEmpty();
+        assertThat(infoStamp.itemId()).isEqualTo("ITEM-ID#13");
+        assertThat(infoStamp.itemRevisionId()).isEmpty();
+        assertThat(infoStamp.creationDate()).isNull();
     }
 
-    /**
-     * Test method for {@link PreliminaryInfoStamp#creationDate()}.
-     */
     @Test
-    public void testCreationDate() {
-        fail("Not yet implemented");
+    public void createInfoWithItemRevisionId() {
+        final PreliminaryInfoStamp infoStamp = underTest.itemRevisionId("ITEM-REVID#45").build();
+
+        assertThat(infoStamp).isNotNull();
+        assertThat(infoStamp.itemId()).isEmpty();
+        assertThat(infoStamp.itemRevisionId()).isNotEmpty();
+        assertThat(infoStamp.itemRevisionId()).isEqualTo("ITEM-REVID#45");
+        assertThat(infoStamp.creationDate()).isNull();
+    }
+
+    @Test
+    public void createInfoWithCreationDate() {
+        final Date creationDate = new Date();
+        final PreliminaryInfoStamp infoStamp = underTest.creationDate(creationDate).build();
+
+        assertThat(infoStamp).isNotNull();
+        assertThat(infoStamp.itemId()).isEmpty();
+        assertThat(infoStamp.itemRevisionId()).isEmpty();
+        assertThat(infoStamp.creationDate()).isNotNull();
+        assertThat(infoStamp.creationDate()).isEqualTo(creationDate);
+        assertThat(infoStamp.creationDate()).isNotSameAs(creationDate);
     }
 }
