@@ -1,5 +1,15 @@
 /*
- * (c) 2013 - Jose A. Garcia
+ * Copyright (C) 2013 Jose A. Garcia Sanchez
+ *
+ * This program is free software: you can redistribute it and/or modify it under the terms of the GNU General Public
+ * License as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later
+ * version.
+ *
+ * This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied
+ * warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License along with this program. If not, see
+ * <http://www.gnu.org/licenses/>.
  */
 package org.jag.pdfstamper.conf;
 
@@ -46,10 +56,6 @@ class BundleLoader implements StamperBundle {
         return filename + ".properties";
     }
 
-    /*
-     * (non-Javadoc)
-     * @see com.autoneum.plm2.pdfstamper.conf.StamperBundle#getProperty(java.lang.String)
-     */
     @Override
     public String getProperty(final String name) {
         final String property = properties.getProperty(name);
@@ -59,28 +65,16 @@ class BundleLoader implements StamperBundle {
         return property;
     }
 
-    /*
-     * (non-Javadoc)
-     * @see com.autoneum.plm2.pdfstamper.conf.StamperBundle#getProperty(java.lang.String, java.lang.String)
-     */
     @Override
     public String getProperty(final String name, final String defaultValue) {
         return properties.getProperty(name, defaultValue);
     }
 
-    /*
-     * (non-Javadoc)
-     * @see com.autoneum.plm2.pdfstamper.conf.StamperBundle#getIntProperty(java.lang.String)
-     */
     @Override
     public int getIntProperty(final String name) {
         return Integer.valueOf(getProperty(name));
     }
 
-    /*
-     * (non-Javadoc)
-     * @see com.autoneum.plm2.pdfstamper.conf.StamperBundle#getIntProperty(java.lang.String, int)
-     */
     @Override
     public int getIntProperty(final String name, final int defaultValue) {
         int value;
@@ -94,10 +88,6 @@ class BundleLoader implements StamperBundle {
         return value;
     }
 
-    /*
-     * (non-Javadoc)
-     * @see com.autoneum.plm2.pdfstamper.conf.StamperBundle#getIntArrayProperty(java.lang.String)
-     */
     @Override
     public int[] getIntArrayProperty(final String name) {
         final String property = getProperty(name);
@@ -131,10 +121,6 @@ class BundleLoader implements StamperBundle {
         return tokens;
     }
 
-    /*
-     * (non-Javadoc)
-     * @see com.autoneum.plm2.pdfstamper.conf.StamperBundle#getBooleanProperty(java.lang.String)
-     */
     @Override
     public boolean getBooleanProperty(final String name) {
         final boolean value;
@@ -147,19 +133,11 @@ class BundleLoader implements StamperBundle {
         return value;
     }
 
-    /*
-     * (non-Javadoc)
-     * @see com.autoneum.plm2.pdfstamper.conf.StamperBundle#getFloatProperty(java.lang.String)
-     */
     @Override
     public float getFloatProperty(final String name) {
         return Float.valueOf(getProperty(name));
     }
 
-    /*
-     * (non-Javadoc)
-     * @see com.autoneum.plm2.pdfstamper.conf.StamperBundle#getFloatProperty(java.lang.String, float)
-     */
     @Override
     public float getFloatProperty(final String name, final float defaultValue) {
         float value = defaultValue;
@@ -174,10 +152,6 @@ class BundleLoader implements StamperBundle {
         return value;
     }
 
-    /*
-     * (non-Javadoc)
-     * @see com.autoneum.plm2.pdfstamper.conf.StamperBundle#getFloatArrayProperty(java.lang.String)
-     */
     @Override
     public float[] getFloatArrayProperty(final String name) {
         final String property = getProperty(name);
@@ -196,10 +170,6 @@ class BundleLoader implements StamperBundle {
         }
     }
 
-    /*
-     * (non-Javadoc)
-     * @see com.autoneum.plm2.pdfstamper.conf.StamperBundle#getDateFormat()
-     */
     @Override
     public DateFormat getDateFormat(final String name) {
         return new SimpleDateFormat(getProperty(name), getLocale());
@@ -212,10 +182,6 @@ class BundleLoader implements StamperBundle {
         return new Locale(System.getProperty("user.language"));
     }
 
-    /*
-     * (non-Javadoc)
-     * @see com.autoneum.plm2.pdfstamper.conf.StamperBundle#getBasefont(java.lang.String)
-     */
     @Override
     public Font getFont(final String name) {
         final String basefontName = getProperty(name + ".font.family");
@@ -242,10 +208,6 @@ class BundleLoader implements StamperBundle {
                 getBooleanProperty(name + ".embedded"));
     }
 
-    /*
-     * (non-Javadoc)
-     * @see com.autoneum.plm2.pdfstamper.conf.StamperBundle#getColor(java.lang.String)
-     */
     @Override
     public BaseColor getColor(final String name) {
         final String colorName = getProperty(name);
