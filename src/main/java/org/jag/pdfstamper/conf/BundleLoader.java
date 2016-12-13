@@ -21,7 +21,9 @@ import java.util.List;
 import java.util.Locale;
 import java.util.Properties;
 import java.util.StringTokenizer;
-import java.util.logging.Logger;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import com.itextpdf.text.BaseColor;
 import com.itextpdf.text.Font;
@@ -33,10 +35,10 @@ import com.itextpdf.text.FontFactory;
  * @author Jose A. Garcia Sanchez
  */
 class BundleLoader implements StamperBundle {
-    private static final Logger LOGGER = Logger.getLogger("pdfstamper");
+    private static final Logger LOGGER = LoggerFactory.getLogger("pdfstamper");
     private static final String SEPARATOR = ",";
 
-    private final transient Properties properties;
+    private final Properties properties;
 
     /**
      * @param filename Filename with the configuration properties
@@ -60,7 +62,7 @@ class BundleLoader implements StamperBundle {
     public String getProperty(final String name) {
         final String property = properties.getProperty(name);
         if (property == null) {
-            LOGGER.warning(String.format("%s property not found", name));
+            LOGGER.warn(String.format("%s property not found", name));
         }
         return property;
     }
@@ -81,7 +83,7 @@ class BundleLoader implements StamperBundle {
         try {
             value = getIntProperty(name);
         } catch (NumberFormatException e) {
-            LOGGER.warning(e.getMessage());
+            LOGGER.warn(e.getMessage(), e);
             value = defaultValue;
         }
 
@@ -110,7 +112,7 @@ class BundleLoader implements StamperBundle {
      * @return List with the tokens from the property
      */
     public final List<String> tokensFromArrayProperty(final String property) {
-        final List<String> tokens = new ArrayList<String>();
+        final List<String> tokens = new ArrayList<>();
 
         final StringTokenizer tokenizer = new StringTokenizer(property, SEPARATOR);
 
@@ -143,10 +145,8 @@ class BundleLoader implements StamperBundle {
         float value = defaultValue;
         try {
             value = getFloatProperty(name);
-        } catch (NumberFormatException e) {
-            LOGGER.warning(e.getMessage());
-        } catch (NullPointerException e) {
-            LOGGER.warning(e.getMessage());
+        } catch (NumberFormatException | NullPointerException e) {
+            LOGGER.warn(e.getMessage(), e);
         }
 
         return value;

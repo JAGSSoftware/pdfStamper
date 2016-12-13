@@ -15,10 +15,11 @@ package org.jag.pdfstamper.stamp;
 
 import java.text.SimpleDateFormat;
 import java.util.EnumSet;
-import java.util.logging.Logger;
 
 import org.jag.pdfstamper.conf.Configuration;
 import org.jag.pdfstamper.conf.StamperBundle;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import com.itextpdf.text.DocumentException;
 import com.itextpdf.text.Element;
@@ -34,7 +35,7 @@ import com.itextpdf.text.pdf.PdfReader;
  * @author Jose A. Garcia
  */
 public class ReleaseStampWriter extends AbstractStampWriter {
-    private static final Logger LOGGER = Logger.getLogger("pdfStamper");
+    private static final Logger LOGGER = LoggerFactory.getLogger("pdfStamper");
     private static final StamperBundle CONFIGURATION = Configuration.INSTANCE_RELEASE;
     private static final float X_POSITION = CONFIGURATION.getFloatProperty("points.per.cm", 28.35f)
             * CONFIGURATION.getFloatProperty("table.xpos");
@@ -42,8 +43,8 @@ public class ReleaseStampWriter extends AbstractStampWriter {
             * CONFIGURATION.getFloatProperty("table.ypos");
     private final ReleaseInfoStamp infoStamp;
 
-    private final transient PdfPTable stampTable;
-    private final transient PdfGState gState;
+    private final PdfPTable stampTable;
+    private final PdfGState gState;
 
     private final WatermarkDecorator decorator;
 
@@ -69,23 +70,23 @@ public class ReleaseStampWriter extends AbstractStampWriter {
         try {
             table.setTotalWidth(tableColumnsWidth);
 
-            table.addCell(newCell(CONFIGURATION.getProperty("approver.TITLE"), infoStamp.approver(),
+            table.addCell(newCell(CONFIGURATION.getProperty("approver.TITLE"), infoStamp.getApprover(),
                     EnumSet.of(CellBorder.TOP, CellBorder.LEFT)));
             table.addCell(newCell(CONFIGURATION.getProperty("approvalDate.TITLE"),
                     new SimpleDateFormat(CONFIGURATION.getProperty("output.date.FORMAT"))
-                            .format(infoStamp.approvalDate()),
+                            .format(infoStamp.getApprovalDate()),
                     EnumSet.of(CellBorder.TOP, CellBorder.RIGHT)));
-            table.addCell(newCell(CONFIGURATION.getProperty("reviewer.TITLE"), infoStamp.reviewer(),
+            table.addCell(newCell(CONFIGURATION.getProperty("reviewer.TITLE"), infoStamp.getReviewer(),
                     EnumSet.of(CellBorder.LEFT)));
-            table.addCell(newCell(CONFIGURATION.getProperty("itemRevisionId.TITLE"), infoStamp.itemRevisionId(),
+            table.addCell(newCell(CONFIGURATION.getProperty("itemRevisionId.TITLE"), infoStamp.getItemRevisionId(),
                     EnumSet.of(CellBorder.RIGHT)));
-            table.addCell(newCell(CONFIGURATION.getProperty("creator.TITLE"), infoStamp.creator(),
+            table.addCell(newCell(CONFIGURATION.getProperty("creator.TITLE"), infoStamp.getCreator(),
                     EnumSet.of(CellBorder.LEFT, CellBorder.BOTTOM)));
-            table.addCell(newCell(CONFIGURATION.getProperty("itemId.TITLE"), infoStamp.itemId(),
+            table.addCell(newCell(CONFIGURATION.getProperty("itemId.TITLE"), infoStamp.getItemId(),
                     EnumSet.of(CellBorder.RIGHT, CellBorder.BOTTOM)));
 
         } catch (DocumentException e) {
-            LOGGER.warning(e.getMessage());
+            LOGGER.warn(e.getMessage(), e);
         }
 
         return table;

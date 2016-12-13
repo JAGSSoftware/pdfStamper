@@ -23,7 +23,6 @@ import com.itextpdf.text.Font;
  * from configuration.
  *
  * @author Jose A. Garcia Sanchez
- * @opt hide com.itextpdf.*
  */
 public interface StamperBundle {
     /**

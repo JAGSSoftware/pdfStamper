@@ -20,10 +20,11 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Properties;
-import java.util.logging.Logger;
 
 import org.jag.pdfstamper.conf.Configuration;
 import org.jag.pdfstamper.conf.StamperBundle;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import com.itextpdf.text.pdf.PdfReader;
 
@@ -31,7 +32,7 @@ import com.itextpdf.text.pdf.PdfReader;
  * @author Jose A. Garcia
  */
 class PreliminaryStamper implements Stamper {
-    private static final Logger LOGGER = Logger.getLogger("pdfStamper");
+    private static final Logger LOGGER = LoggerFactory.getLogger("pdfStamper");
     private static final StamperBundle CONFIGURATION = Configuration.INSTANCE_PRELIMINARY;
     private final PreliminaryInfoStamp infoStamp;
     private final String watermark;
@@ -63,18 +64,13 @@ class PreliminaryStamper implements Stamper {
             approvalDate = new SimpleDateFormat(CONFIGURATION.getProperty("input.date.FORMAT"))
                     .parse(properties.getProperty("creationDate"));
         } catch (ParseException e) {
-            LOGGER.warning(e.getMessage());
+            LOGGER.warn(e.getMessage(), e);
             approvalDate = new Date();
         }
 
         return approvalDate;
     }
 
-    /*
-     * (non-Javadoc)
-     * 
-     * @see de.areva.pdfstamper.stamp.Stamper#stamp(com.itextpdf.text.pdf.PdfReader)
-     */
     @Override
     public StampWriter stamp(final PdfReader pdfReader) {
         return new PreliminaryStampWriter(infoStamp, pdfReader, createDecorator(pdfReader));

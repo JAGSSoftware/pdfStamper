@@ -15,13 +15,15 @@ package org.jag.pdfstamper.stamp;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;
-import java.util.logging.Logger;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
  * @author Jose A. Garcia
  */
 public final class StamperFactory {
-    private static final Logger LOGGER = Logger.getLogger("pdfStamper");
+    private static final Logger LOGGER = LoggerFactory.getLogger("pdfStamper");
 
     /** Constructor. */
     private StamperFactory() {
@@ -49,9 +51,9 @@ public final class StamperFactory {
                 throw new IllegalArgumentException(String.format("StampType [%s] not valid", stampType));
             }
         } catch (FileNotFoundException e) {
-            LOGGER.warning(e.getMessage());
+            LOGGER.warn(e.getMessage(), e);
         } catch (IOException e) {
-            LOGGER.warning(e.getMessage());
+            LOGGER.warn(e.getMessage(), e);
         }
         return stamper;
     }

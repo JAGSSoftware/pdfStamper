@@ -15,10 +15,11 @@ package org.jag.pdfstamper.stamp;
 
 import java.text.SimpleDateFormat;
 import java.util.EnumSet;
-import java.util.logging.Logger;
 
 import org.jag.pdfstamper.conf.Configuration;
 import org.jag.pdfstamper.conf.StamperBundle;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import com.itextpdf.text.DocumentException;
 import com.itextpdf.text.Element;
@@ -35,15 +36,15 @@ import com.itextpdf.text.pdf.PdfReader;
  */
 public class PreliminaryStampWriter extends AbstractStampWriter {
     private static final StamperBundle CONFIGURATION = Configuration.INSTANCE_PRELIMINARY;
-    private static final Logger LOGGER = Logger.getLogger("pdfStamper");
+    private static final Logger LOGGER = LoggerFactory.getLogger("pdfStamper");
     private static final float X_POSITION = CONFIGURATION.getFloatProperty("points.per.cm", 28.35f)
             * CONFIGURATION.getFloatProperty("table.xpos");
     private static final float Y_POSITION = CONFIGURATION.getFloatProperty("points.per.cm", 28.35f)
             * CONFIGURATION.getFloatProperty("table.ypos");
     private final PreliminaryInfoStamp infoStamp;
 
-    private final transient PdfPTable stampTable;
-    private final transient PdfGState gState;
+    private final PdfPTable stampTable;
+    private final PdfGState gState;
 
     private final WatermarkDecorator decorator;
 
@@ -80,7 +81,7 @@ public class PreliminaryStampWriter extends AbstractStampWriter {
                     EnumSet.of(CellBorder.LEFT, CellBorder.BOTTOM, CellBorder.RIGHT)));
 
         } catch (DocumentException e) {
-            LOGGER.warning(e.getMessage());
+            LOGGER.warn(e.getMessage(), e);
         }
 
         return table;

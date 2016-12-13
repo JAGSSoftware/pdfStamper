@@ -15,7 +15,6 @@ package org.jag.pdfstamper;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;
-import java.util.logging.Logger;
 
 import org.apache.commons.cli.CommandLine;
 import org.apache.commons.cli.CommandLineParser;
@@ -27,6 +26,8 @@ import org.apache.commons.cli.PosixParser;
 import org.jag.pdfstamper.stamp.StampType;
 import org.jag.pdfstamper.stamp.StampWriter;
 import org.jag.pdfstamper.stamp.StamperFactory;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import com.itextpdf.text.DocumentException;
 import com.itextpdf.text.pdf.PdfReader;
@@ -38,7 +39,7 @@ import com.itextpdf.text.pdf.PdfReader;
  */
 public class Main {
     /** Logger. */
-    private static final Logger LOGGER = Logger.getLogger(Main.class.getName());
+    private static final Logger LOGGER = LoggerFactory.getLogger(Main.class);
 
     /** Name for the input file argument (short). */
     private static final String IN_ARGUMENT = "in";
@@ -66,25 +67,25 @@ public class Main {
             new Option(STAMPTYPE_ARGUMENT, true, "type of stamp: {release | preliminary | watermark}"),};
 
     /** Collection of program options. */
-    private final transient Options options = new Options();
+    private final Options options = new Options();
 
     /** Flag to say if the provided arguments to the program are correct. */
-    private transient boolean argumentValid = true;
+    private boolean argumentValid = true;
 
     /** Command line processor. */
-    private transient CommandLine commandLine;
+    private CommandLine commandLine;
 
     /** Name of the PDF to be stamped. */
-    private transient String inputFile;
+    private String inputFile;
 
     /** Name of the stamped PDF file. */
-    private transient String outputFile;
+    private String outputFile;
 
     /** PDF reader object. */
-    private transient PdfReader pdfReader;
+    private PdfReader pdfReader;
 
     /** PDF Stamp writer object. */
-    private transient StampWriter stampWriter;
+    private StampWriter stampWriter;
 
     /**
      * Constructor.
@@ -101,7 +102,7 @@ public class Main {
      * @throws IOException
      */
     public static void main(final String[] args) throws IOException, DocumentException {
-        LOGGER.entering(Main.class.getCanonicalName(), "main");
+        LOGGER.debug(Main.class.getCanonicalName(), "main");
 
         final Main stamperMain = new Main();
         try {
@@ -114,10 +115,10 @@ public class Main {
                 stamperMain.printHelp();
             }
         } catch (ParseException e) {
-            LOGGER.warning(e.getMessage());
+            LOGGER.warn(e.getMessage(), e);
             stamperMain.printHelp();
         } catch (IOException e) {
-            LOGGER.warning(e.getMessage());
+            LOGGER.warn(e.getMessage(), e);
         }
     }
 
@@ -154,7 +155,7 @@ public class Main {
         for (Option option : getOptions()) {
             final boolean validOption = commandLine.hasOption(option.getOpt());
             if (!validOption) {
-                LOGGER.warning("Missing argument: [" + option.getOpt() + "]");
+                LOGGER.warn("Missing argument: [" + option.getOpt() + "]");
             }
             argumentValid &= validOption;
         }
@@ -180,7 +181,7 @@ public class Main {
      * @throws DocumentException
      */
     public final void open() throws IOException, DocumentException {
-        LOGGER.entering(getClass().getCanonicalName(), "open");
+        LOGGER.debug(getClass().getCanonicalName(), "open");
         pdfReader = new PdfReader(inputFile);
         stampWriter = StamperFactory.newInstance(StampType.find(commandLine.getOptionValue(STAMPTYPE_ARGUMENT)),
                 commandLine.getOptionValue(STAMPFILE_ARGUMENT)).stamp(pdfReader);
@@ -200,7 +201,7 @@ public class Main {
      * @throws IOException
      */
     public final void close() throws DocumentException, IOException {
-        LOGGER.entering(getClass().getCanonicalName(), "close");
+        LOGGER.debug(getClass().getCanonicalName(), "close");
         stampWriter.close();
 
         if (pdfReader != null) {

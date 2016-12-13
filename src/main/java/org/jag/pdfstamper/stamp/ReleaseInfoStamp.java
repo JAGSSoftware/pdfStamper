@@ -18,6 +18,9 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Properties;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import com.google.common.base.MoreObjects;
 import com.google.common.base.Strings;
 
@@ -25,6 +28,7 @@ import com.google.common.base.Strings;
  * @author Jose A. Garcia
  */
 public class ReleaseInfoStamp {
+    private static final Logger LOGGER = LoggerFactory.getLogger("pdfStamper");
     private final String creator;
     private final String reviewer;
     private final String approver;
@@ -45,27 +49,27 @@ public class ReleaseInfoStamp {
         this(new ReleaseInfoStamp.Builder(properties));
     }
 
-    public String creator() {
+    public String getCreator() {
         return this.creator;
     }
 
-    public String reviewer() {
+    public String getReviewer() {
         return this.reviewer;
     }
 
-    public String approver() {
+    public String getApprover() {
         return this.approver;
     }
 
-    public String itemId() {
+    public String getItemId() {
         return this.itemId;
     }
 
-    public String itemRevisionId() {
+    public String getItemRevisionId() {
         return this.itemRevisionId;
     }
 
-    public Date approvalDate() {
+    public Date getApprovalDate() {
         if (approvalDate == null) {
             return null;
         }
@@ -100,11 +104,12 @@ public class ReleaseInfoStamp {
             reviewer(properties.getProperty(REVIEWER_KEY));
             approver(properties.getProperty(APPROVER_KEY));
             itemId(properties.getProperty(ITEM_ID_KEY));
-            itemRevisionId(properties.getProperty(ITEM_REVISION_ID_KEY));
+            revisionId(properties.getProperty(ITEM_REVISION_ID_KEY));
             try {
                 final Date date = new SimpleDateFormat("yyyy-MM-dd").parse(properties.getProperty(APPROVAL_DATE_KEY));
                 approvalDate(date);
             } catch (ParseException | NullPointerException e) {
+                LOGGER.warn(e.getMessage(), e);
                 approvalDate(null);
             }
         }
@@ -137,7 +142,7 @@ public class ReleaseInfoStamp {
             return this;
         }
 
-        public Builder itemRevisionId(final String itemRevisionId) {
+        public Builder revisionId(final String itemRevisionId) {
             this.itemRevisionId = itemRevisionId;
 
             return this;

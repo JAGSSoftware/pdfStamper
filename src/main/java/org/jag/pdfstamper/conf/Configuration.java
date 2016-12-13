@@ -15,7 +15,9 @@ package org.jag.pdfstamper.conf;
 
 import java.io.IOException;
 import java.text.DateFormat;
-import java.util.logging.Logger;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import com.itextpdf.text.BaseColor;
 import com.itextpdf.text.Font;
@@ -40,7 +42,7 @@ public enum Configuration implements StamperBundle {
     /** Configuration for Watermark stamping. */
     INSTANCE_WATERMARK("watermark_configuration");
 
-    private static final Logger LOGGER = Logger.getLogger("pdfStamper");
+    private static final Logger LOGGER = LoggerFactory.getLogger("pdfStamper");
     private StamperBundle bundle;
 
     /**
@@ -52,7 +54,7 @@ public enum Configuration implements StamperBundle {
         try {
             bundle = new BundleLoader(configurationFile);
         } catch (IOException e) {
-            Logger.getLogger("pdfStamper").warning(e.getMessage());
+            LoggerFactory.getLogger("pdfStamper").warn(e.getMessage(), e);
             bundle = new NullStamperBundle();
         }
     }
@@ -83,7 +85,7 @@ public enum Configuration implements StamperBundle {
      * @param propertyName Name of the falling property
      */
     private void warning(final String propertyName) {
-        LOGGER.warning(String.format("Property [%s] not found in the configuration properties", propertyName));
+        LOGGER.warn("Property [{}] not found in the configuration properties", propertyName);
     }
 
     @Override
