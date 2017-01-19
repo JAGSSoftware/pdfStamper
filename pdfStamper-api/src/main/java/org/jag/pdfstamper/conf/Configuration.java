@@ -32,6 +32,7 @@ import com.itextpdf.text.Font;
  *
  * @author Jose A. Garcia Sanchez
  */
+@Deprecated
 public enum Configuration implements StamperBundle {
     /** Configuration for Release stamping. */
     INSTANCE_RELEASE("release_configuration"),
@@ -47,7 +48,7 @@ public enum Configuration implements StamperBundle {
 
     /**
      * Constructor.
-     * 
+     *
      * @param configurationFile Configuration file
      */
     private Configuration(final String configurationFile) {
@@ -81,7 +82,7 @@ public enum Configuration implements StamperBundle {
 
     /**
      * Writes a warning entry in log with the name of the property.
-     * 
+     *
      * @param propertyName Name of the falling property
      */
     private void warning(final String propertyName) {

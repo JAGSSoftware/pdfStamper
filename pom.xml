@@ -12,6 +12,7 @@
 		<module>pdfStamper-preliminary</module>
 		<module>pdfStamper-release</module>
 		<module>pdfStamper-watermark</module>
+		<module>pdfStamper-main</module>
 	</modules>
 
     <organization>

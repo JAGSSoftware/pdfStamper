@@ -14,6 +14,7 @@
 package org.jag.pdfstamper.conf;
 
 import java.io.IOException;
+import java.io.InputStream;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -41,13 +42,23 @@ class BundleLoader implements StamperBundle {
     private final Properties properties;
 
     /**
-     * @param filename Filename with the configuration properties
-     * @throws IOException Exception when loading the file
+     * @param filename
+     *            Filename with the configuration properties
+     * @throws IOException
+     *             Exception when loading the file
      */
     BundleLoader(final String filename) throws IOException {
         properties = new Properties();
-        properties.load(ClassLoader.getSystemResourceAsStream(getDecoratedFilename(filename)));
-        properties.load(ClassLoader.getSystemResourceAsStream(getDecoratedFilename(filename + "_locale")));
+
+        final InputStream configurationResource = ClassLoader.getSystemResourceAsStream(getDecoratedFilename(filename));
+        if (configurationResource != null) {
+            properties.load(configurationResource);
+        }
+        final InputStream localeConfigurationResource = ClassLoader
+                .getSystemResourceAsStream(getDecoratedFilename(filename + "_locale"));
+        if (localeConfigurationResource != null) {
+            properties.load(localeConfigurationResource);
+        }
     }
 
     /**

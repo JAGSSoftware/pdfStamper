@@ -7,4 +7,12 @@
 		<version>1.0.0-SNAPSHOT</version>
 	</parent>
 	<artifactId>pdfStamper-release</artifactId>
+	<dependencies>
+		<dependency>
+			<groupId>org.jag</groupId>
+			<artifactId>pdfStamper-api</artifactId>
+			<version>1.0.0-SNAPSHOT</version>
+			<scope>provided</scope>
+		</dependency>
+	</dependencies>
 </project>

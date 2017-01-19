@@ -13,20 +13,13 @@
  */
 package org.jag.pdfstamper.conf;
 
-import static org.junit.Assert.assertArrayEquals;
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.assertNotNull;
-import static org.junit.Assert.assertNull;
-import static org.junit.Assert.assertTrue;
+import static com.google.common.truth.Truth.assertThat;
 
+import java.io.IOException;
 import java.util.List;
 
 import org.junit.Before;
 import org.junit.Test;
-
-import com.itextpdf.text.BaseColor;
-import com.itextpdf.text.Font;
 
 /**
  * @author Jose A. Garcia
@@ -35,263 +28,174 @@ public class BundleLoaderTest {
     private static final float PRECISION = .0001f;
     private BundleLoader bundle;
 
-    /**
-     * @throws java.lang.Exception
-     */
     @Before
     public void setUp() throws Exception {
         bundle = new BundleLoader("test");
     }
 
-    /**
-     * Test method for {@link BundleLoader#getProperty(java.lang.String)}.
-     */
     @Test
-    public void testGetPropertyString() {
-        assertEquals("Property String", bundle.getProperty("stringProperty"));
+    public void getPropertyString() {
+        assertThat(bundle.getProperty("stringProperty")).isEqualTo("Property String");
     }
 
-    /**
-     * Test method for {@link BundleLoader#getProperty(java.lang.String)}.
-     */
     @Test
-    public void testGetPropertyStringNull() {
-        assertNull(bundle.getProperty("stringPropertyNull"));
+    public void getPropertyStringNull() {
+        assertThat(bundle.getProperty("stringPropertyNull")).isNull();
     }
 
-    /**
-     * Test method for {@link BundleLoader#getProperty(java.lang.String, java.lang.String)}.
-     */
     @Test
-    public void testGetPropertyStringString() {
-        assertEquals("Property String", bundle.getProperty("stringProperty", "Default value"));
+    public void getPropertyStringString() {
+        assertThat(bundle.getProperty("stringProperty", "Default value")).isEqualTo("Property String");
     }
 
-    /**
-     * Test method for {@link BundleLoader#getProperty(java.lang.String, java.lang.String)}.
-     */
     @Test
-    public void testGetPropertyStringStringNull() {
-        assertEquals("Default value", bundle.getProperty("stringPropertyNull", "Default value"));
+    public void getPropertyStringStringNull() {
+        assertThat(bundle.getProperty("stringPropertyNull", "Default value")).isEqualTo("Default value");
     }
 
-    /**
-     * Test method for {@link BundleLoader#getIntProperty(java.lang.String)}.
-     */
     @Test
-    public void testGetIntPropertyString() {
-        assertEquals(1, bundle.getIntProperty("intProperty"));
+    public void getIntPropertyString() {
+        assertThat(bundle.getIntProperty("intProperty")).isEqualTo(1);
     }
 
-    /**
-     * Test method for {@link BundleLoader#getIntProperty(java.lang.String)}.
-     */
     @Test(expected = NumberFormatException.class)
-    public void testGetIntPropertyStringNull() {
+    public void getIntPropertyStringNull() {
         bundle.getIntProperty("intPropertyNull");
     }
 
-    /**
-     * Test method for {@link BundleLoader#getIntProperty(java.lang.String, int)}.
-     */
     @Test
-    public void testGetIntPropertyStringInt() {
-        assertEquals(1, bundle.getIntProperty("intProperty", 100));
+    public void getIntPropertyStringInt() {
+        assertThat(bundle.getIntProperty("intProperty")).isEqualTo(1);
     }
 
-    /**
-     * Test method for {@link BundleLoader#getIntProperty(java.lang.String, int)}.
-     */
     @Test
-    public void testGetIntPropertyStringIntNull() {
-        assertEquals(100, bundle.getIntProperty("intPropertyNull", 100));
+    public void getIntPropertyStringIntNull() {
+        assertThat(bundle.getIntProperty("intPropertyNull", 100)).isEqualTo(100);
     }
 
-    /**
-     * Test method for {@link BundleLoader#getIntArrayProperty(java.lang.String)}.
-     */
     @Test
-    public void testGetIntArrayProperty() {
+    public void getIntArrayProperty() {
         final int[] expected = {1, 2, 3};
 
-        assertArrayEquals(expected, bundle.getIntArrayProperty("intArrayProperty"));
+        assertThat(bundle.getIntArrayProperty("intArrayProperty")).isEqualTo(expected);
     }
 
-    /**
-     * Test method for {@link BundleLoader#getIntArrayProperty(java.lang.String)}.
-     */
     @Test
-    public void testGetIntArrayPropertyNull() {
-        assertArrayEquals(new int[0], bundle.getIntArrayProperty("intArrayPropertyNull"));
+    public void getIntArrayPropertyNull() {
+        assertThat(bundle.getIntArrayProperty("intArrayPropertyNull")).isNotNull();
+        assertThat(bundle.getIntArrayProperty("intArrayPropertyNull")).isEmpty();
     }
 
-    /**
-     * Test method for {@link BundleLoader#getIntArrayProperty(java.lang.String)}.
-     */
     @Test
-    public void testGetIntArrayProperty1() {
+    public void getIntArrayProperty1() {
         final int[] expected = {1977};
 
-        assertArrayEquals(expected, bundle.getIntArrayProperty("intArrayProperty1"));
+        assertThat(bundle.getIntArrayProperty("intArrayProperty1")).isEqualTo(expected);
     }
 
     @Test
-    public void testTokensFromArrayProperty() {
+    public void tokensFromArrayProperty() {
         final List<String> tokens = bundle.tokensFromArrayProperty("123,456, 789");
         final String[] expected = new String[]{"123", "456", "789"};
 
-        assertArrayEquals(expected, tokens.toArray(new String[tokens.size()]));
+        assertThat(tokens.toArray(new String[tokens.size()])).isEqualTo(expected);
     }
 
-    /**
-     * Test method for {@link BundleLoader#getBooleanProperty(java.lang.String)}.
-     */
     @Test
-    public void testGetBooleanProperty() {
-        assertTrue("true", bundle.getBooleanProperty("trueProperty_true"));
-        assertTrue("TRUE", bundle.getBooleanProperty("trueProperty_TRUE"));
-        assertFalse("false", bundle.getBooleanProperty("falseProperty_false"));
-        assertFalse("FALSE", bundle.getBooleanProperty("falseProperty_FALSE"));
+    public void getBooleanProperty() {
+        assertThat(bundle.getBooleanProperty("trueProperty_true")).isTrue();
+        assertThat(bundle.getBooleanProperty("trueProperty_TRUE")).isTrue();
+        assertThat(bundle.getBooleanProperty("falseProperty_false")).isFalse();
+        assertThat(bundle.getBooleanProperty("falseProperty_FALSE")).isFalse();
     }
 
-    /**
-     * Test method for {@link BundleLoader#getBooleanProperty(java.lang.String)}.
-     */
     @Test(expected = NullPointerException.class)
-    public void testGetBooleanPropertyNull() {
+    public void getBooleanPropertyNull() {
         bundle.getBooleanProperty("booleanPropertyNull");
     }
 
-    /**
-     * Test method for {@link BundleLoader#getBooleanProperty(java.lang.String)}.
-     */
     @Test
-    public void testGetBooleanPropertyOtherValue() {
-        assertFalse(bundle.getBooleanProperty("booleanPropertyOther"));
+    public void getBooleanPropertyOtherValue() {
+        assertThat(bundle.getBooleanProperty("booleanPropertyOther")).isFalse();
     }
 
-    /**
-     * Test method for {@link BundleLoader#getFloatProperty(java.lang.String)}.
-     */
     @Test
-    public void testGetFloatPropertyString() {
-        assertEquals(1.2f, bundle.getFloatProperty("floatProperty"), PRECISION);
+    public void getFloatPropertyString() {
+        assertThat(bundle.getFloatProperty("floatProperty")).isWithin(PRECISION).of(1.2f);
     }
 
-    /**
-     * Test method for {@link BundleLoader#getFloatProperty(java.lang.String)}.
-     */
     @Test(expected = NullPointerException.class)
-    public void testGetFloatPropertyStringNull() {
+    public void getFloatPropertyStringNull() {
         bundle.getFloatProperty("floatPropertyNull");
     }
 
     @Test(expected = NumberFormatException.class)
-    public void testGetFloatPropertyStringFormatException() {
+    public void getFloatPropertyStringFormatException() {
         bundle.getFloatProperty("floatProperty_FormatException");
     }
 
-    /**
-     * Test method for {@link BundleLoader#getFloatProperty(java.lang.String, float)}.
-     */
     @Test
-    public void testGetFloatPropertyStringFloat() {
-        assertEquals(1.2f, bundle.getFloatProperty("floatProperty", 2.3f), PRECISION);
+    public void getFloatPropertyStringFloat() {
+        assertThat(bundle.getFloatProperty("floatProperty", 2.3f)).isWithin(PRECISION).of(1.2f);
     }
 
-    /**
-     * Test method for {@link BundleLoader#getFloatProperty(java.lang.String, float)}.
-     */
     @Test
-    public void testGetFloatPropertyStringFloatFormatException() {
-        assertEquals(2.3f, bundle.getFloatProperty("floatProperty_FormatException", 2.3f), PRECISION);
+    public void getFloatPropertyStringFloatFormatException() {
+        assertThat(bundle.getFloatProperty("floatProperty_FormatException", 2.3f)).isWithin(PRECISION).of(2.3f);
     }
 
-    /**
-     * Test method for {@link BundleLoader#getFloatProperty(java.lang.String, float)}.
-     */
     @Test
-    public void testGetFloatPropertyStringFloatNull() {
-        assertEquals(2.3f, bundle.getFloatProperty("floatPropertyNull", 2.3f), PRECISION);
+    public void getFloatPropertyStringFloatNull() {
+        assertThat(bundle.getFloatProperty("floatPropertyNull", 2.3f)).isWithin(PRECISION).of(2.3f);
     }
 
-    /**
-     * Test method for {@link BundleLoader#getFloatArrayProperty(java.lang.String)}.
-     */
     @Test
-    public void testGetFloatArrayProperty() {
+    public void getFloatArrayProperty() {
         final float[] expected = {1.1f, 2.2f, 3.3f};
-        assertArrayFloatEquals(expected, bundle.getFloatArrayProperty("floatArrayProperty"));
+
+        assertThat(bundle.getFloatArrayProperty("floatArrayProperty")).hasValuesWithin(0f).of(expected);
     }
 
-    /**
-     * Test method for {@link BundleLoader#getFloatArrayProperty(java.lang.String)}.
-     */
     @Test
-    public void testGetFloatArrayPropertyNull() {
-        assertArrayFloatEquals(new float[0], bundle.getFloatArrayProperty("floatArrayPropertyNull"));
+    public void getFloatArrayPropertyNull() {
+        assertThat(bundle.getFloatArrayProperty("floatArrayPropertyNull")).isNotNull();
+        assertThat(bundle.getFloatArrayProperty("floatArrayPropertyNull")).isEmpty();
     }
 
-    /**
-     * Test method for {@link BundleLoader#getDateFormat(java.lang.String)}.
-     */
     @Test
-    public void testGetDateFormat() {
-        assertNotNull(bundle.getDateFormat("dateformatProperty"));
+    public void getDateFormat() {
+        assertThat(bundle.getDateFormat("dateformatProperty")).isNotNull();
     }
 
-    /**
-     * Test method for {@link BundleLoader#getDateFormat(java.lang.String)}.
-     */
     @Test(expected = NullPointerException.class)
-    public void testGetDateFormatNull() {
-        assertNotNull(bundle.getDateFormat("dateformatPropertyNull"));
+    public void getDateFormatNull() {
+        assertThat(bundle.getDateFormat("dateformatPropertyNull")).isNotNull();
     }
 
-    /**
-     * Test method for {@link BundleLoader#getFont(java.lang.String)}.
-     */
     @Test
-    public void testGetFont() {
-        final Font font = bundle.getFont("fontProperty");
-        assertNotNull(font);
+    public void getFont() {
+        assertThat(bundle.getFont("fontProperty")).isNotNull();
     }
 
-    /**
-     * Test method for {@link BundleLoader#getFont(java.lang.String)}.
-     */
     @Test
-    public void testGetFontNull() {
-        final Font font = bundle.getFont("fontPropertyNull");
-        assertNull(font);
+    public void getFontNull() {
+        assertThat(bundle.getFont("fontPropertyNull")).isNull();
     }
 
-    /**
-     * Test method for {@link BundleLoader#getColor(java.lang.String)}.
-     */
     @Test
-    public void testGetColor() {
-        final BaseColor color = bundle.getColor("colorProperty");
-        assertNotNull(color);
+    public void getColor() {
+        assertThat(bundle.getColor("colorProperty")).isNotNull();
     }
 
-    /**
-     * Test method for {@link BundleLoader#getColor(java.lang.String)}.
-     */
     @Test
-    public void testGetColorNull() {
-        final BaseColor color = bundle.getColor("colorPropertyNull");
-        assertNull(color);
+    public void getColorNull() {
+        assertThat(bundle.getColor("colorPropertyNull")).isNull();
     }
 
-    /**
-     * @param expected
-     * @param actual
-     */
-    private void assertArrayFloatEquals(final float[] expected, final float[] actual) {
-        assertEquals("size", expected.length, actual.length);
-        for (int i = 0, size = expected.length; i < size; i++) {
-            assertEquals("[" + i + "]", expected[i], actual[i], PRECISION);
-        }
+    @Test
+    public void configurationFileDoesNotExist() throws IOException {
+        final BundleLoader loader = new BundleLoader("doesNotExist");
+
+        assertThat(loader).isNotNull();
     }
 }
