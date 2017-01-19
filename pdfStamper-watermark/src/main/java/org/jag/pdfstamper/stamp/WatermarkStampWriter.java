@@ -13,8 +13,8 @@
  */
 package org.jag.pdfstamper.stamp;
 
-import org.jag.pdfstamper.conf.Configuration;
 import org.jag.pdfstamper.conf.StamperBundle;
+import org.jag.pdfstamper.conf.WatermarkConfigurationFactory;
 
 import com.itextpdf.text.Element;
 import com.itextpdf.text.Font;
@@ -28,7 +28,7 @@ import com.itextpdf.text.pdf.PdfStamper;
  * @author Jose A. Garcia
  */
 class WatermarkStampWriter extends AbstractStampWriter implements WatermarkDecorator {
-    private static final StamperBundle CONFIGURATION = Configuration.INSTANCE_WATERMARK;
+    private static final StamperBundle CONFIGURATION = WatermarkConfigurationFactory.getInstance().getStamperBundle();
     private final WatermarkInfoStamp infoStamp;
 
     private final transient Font watermarkFont;

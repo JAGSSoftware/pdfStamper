@@ -16,7 +16,7 @@ package org.jag.pdfstamper.stamp;
 import java.text.SimpleDateFormat;
 import java.util.EnumSet;
 
-import org.jag.pdfstamper.conf.Configuration;
+import org.jag.pdfstamper.conf.PreliminaryConfigurationFactory;
 import org.jag.pdfstamper.conf.StamperBundle;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -34,14 +34,14 @@ import com.itextpdf.text.pdf.PdfReader;
 /**
  * @author Jose A. Garcia
  */
-public class ReleaseStampWriter extends AbstractStampWriter {
+public class PreliminaryStampWriter extends AbstractStampWriter {
+    private static final StamperBundle CONFIGURATION = PreliminaryConfigurationFactory.getInstance().getStamperBundle();
     private static final Logger LOGGER = LoggerFactory.getLogger("pdfStamper");
-    private static final StamperBundle CONFIGURATION = Configuration.INSTANCE_RELEASE;
     private static final float X_POSITION = CONFIGURATION.getFloatProperty("points.per.cm", 28.35f)
             * CONFIGURATION.getFloatProperty("table.xpos");
     private static final float Y_POSITION = CONFIGURATION.getFloatProperty("points.per.cm", 28.35f)
             * CONFIGURATION.getFloatProperty("table.ypos");
-    private final ReleaseInfoStamp infoStamp;
+    private final PreliminaryInfoStamp infoStamp;
 
     private final PdfPTable stampTable;
     private final PdfGState gState;
@@ -52,7 +52,7 @@ public class ReleaseStampWriter extends AbstractStampWriter {
      * @param infoStamp
      * @param pdfReader
      */
-    public ReleaseStampWriter(final ReleaseInfoStamp infoStamp, final PdfReader pdfReader,
+    protected PreliminaryStampWriter(final PreliminaryInfoStamp infoStamp, final PdfReader pdfReader,
             final WatermarkDecorator decorator) {
         super(pdfReader);
         this.infoStamp = infoStamp;
@@ -70,20 +70,15 @@ public class ReleaseStampWriter extends AbstractStampWriter {
         try {
             table.setTotalWidth(tableColumnsWidth);
 
-            table.addCell(newCell(CONFIGURATION.getProperty("approver.TITLE"), infoStamp.getApprover(),
-                    EnumSet.of(CellBorder.TOP, CellBorder.LEFT)));
-            table.addCell(newCell(CONFIGURATION.getProperty("approvalDate.TITLE"),
-                    new SimpleDateFormat(CONFIGURATION.getProperty("output.date.FORMAT"))
-                            .format(infoStamp.getApprovalDate()),
-                    EnumSet.of(CellBorder.TOP, CellBorder.RIGHT)));
-            table.addCell(newCell(CONFIGURATION.getProperty("reviewer.TITLE"), infoStamp.getReviewer(),
-                    EnumSet.of(CellBorder.LEFT)));
-            table.addCell(newCell(CONFIGURATION.getProperty("itemRevisionId.TITLE"), infoStamp.getItemRevisionId(),
-                    EnumSet.of(CellBorder.RIGHT)));
-            table.addCell(newCell(CONFIGURATION.getProperty("creator.TITLE"), infoStamp.getCreator(),
-                    EnumSet.of(CellBorder.LEFT, CellBorder.BOTTOM)));
-            table.addCell(newCell(CONFIGURATION.getProperty("itemId.TITLE"), infoStamp.getItemId(),
-                    EnumSet.of(CellBorder.RIGHT, CellBorder.BOTTOM)));
+            table.addCell(
+                    newCell(CONFIGURATION.getProperty("creationDate.TITLE"),
+                            new SimpleDateFormat(CONFIGURATION.getProperty("output.date.FORMAT"))
+                                    .format(infoStamp.creationDate()),
+                            EnumSet.of(CellBorder.TOP, CellBorder.LEFT, CellBorder.RIGHT)));
+            table.addCell(newCell(CONFIGURATION.getProperty("itemRevisionId.TITLE"), infoStamp.itemRevisionId(),
+                    EnumSet.of(CellBorder.LEFT, CellBorder.RIGHT)));
+            table.addCell(newCell(CONFIGURATION.getProperty("itemId.TITLE"), infoStamp.itemId(),
+                    EnumSet.of(CellBorder.LEFT, CellBorder.BOTTOM, CellBorder.RIGHT)));
 
         } catch (DocumentException e) {
             LOGGER.warn(e.getMessage(), e);
@@ -104,7 +99,7 @@ public class ReleaseStampWriter extends AbstractStampWriter {
 
     /*
      * (non-Javadoc)
-     * 
+     *
      * @see de.areva.pdfstamper.stamp.AbstractStampWriter#write()
      */
     @Override
@@ -117,7 +112,7 @@ public class ReleaseStampWriter extends AbstractStampWriter {
     /**
      * @param pageNum
      */
-    private void writePage(final int pageNum) {
+    public void writePage(final int pageNum) {
         final PdfContentByte content = pdfStamper().getOverContent(pageNum);
         content.setGState(gState);
         content.saveState();

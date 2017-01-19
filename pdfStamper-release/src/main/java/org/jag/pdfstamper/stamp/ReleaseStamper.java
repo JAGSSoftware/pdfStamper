@@ -22,7 +22,7 @@ import java.util.Date;
 import java.util.Properties;
 import java.util.logging.Logger;
 
-import org.jag.pdfstamper.conf.Configuration;
+import org.jag.pdfstamper.conf.ReleaseConfigurationFactory;
 import org.jag.pdfstamper.conf.StamperBundle;
 
 import com.itextpdf.text.pdf.PdfReader;
@@ -32,7 +32,7 @@ import com.itextpdf.text.pdf.PdfReader;
  */
 class ReleaseStamper implements Stamper {
     private static final Logger LOGGER = Logger.getLogger("pdfStamper");
-    private static final StamperBundle CONFIGURATION = Configuration.INSTANCE_RELEASE;
+    private static final StamperBundle CONFIGURATION = ReleaseConfigurationFactory.getInstance().getStamperBundle();
     private final ReleaseInfoStamp infoStamp;
     private final String watermark;
 

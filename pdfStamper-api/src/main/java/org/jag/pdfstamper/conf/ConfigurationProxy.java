@@ -25,7 +25,7 @@ import com.itextpdf.text.Font;
 /**
  * @author Jose A. Garcia
  */
-public class ConfigurationProxy implements StamperBundle {
+class ConfigurationProxy implements StamperBundle {
     private static final Logger LOGGER = LoggerFactory.getLogger(ConfigurationProxy.class);
     private final StamperBundle bundle;
 

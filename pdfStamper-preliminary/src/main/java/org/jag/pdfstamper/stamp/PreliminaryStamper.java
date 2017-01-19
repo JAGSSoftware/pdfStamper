@@ -21,7 +21,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Properties;
 
-import org.jag.pdfstamper.conf.Configuration;
+import org.jag.pdfstamper.conf.PreliminaryConfigurationFactory;
 import org.jag.pdfstamper.conf.StamperBundle;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -33,7 +33,7 @@ import com.itextpdf.text.pdf.PdfReader;
  */
 class PreliminaryStamper implements Stamper {
     private static final Logger LOGGER = LoggerFactory.getLogger("pdfStamper");
-    private static final StamperBundle CONFIGURATION = Configuration.INSTANCE_PRELIMINARY;
+    private static final StamperBundle CONFIGURATION = PreliminaryConfigurationFactory.getInstance().getStamperBundle();
     private final PreliminaryInfoStamp infoStamp;
     private final String watermark;
     // private final WatermarkInfoStamp watermarkInfoStamp;

@@ -33,7 +33,7 @@ public class PreliminaryConfigurationFactory {
     private final StamperBundle bundle;
 
     private PreliminaryConfigurationFactory(final StamperBundle bundle) {
-        this.bundle = bundle;
+        this.bundle = new ConfigurationProxy(bundle);
     }
 
     public static PreliminaryConfigurationFactory getInstance() {

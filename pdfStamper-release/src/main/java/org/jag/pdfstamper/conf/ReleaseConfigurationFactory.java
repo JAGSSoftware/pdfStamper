@@ -33,7 +33,7 @@ public class ReleaseConfigurationFactory {
     private final StamperBundle bundle;
 
     private ReleaseConfigurationFactory(final StamperBundle bundle) {
-        this.bundle = bundle;
+        this.bundle = new ConfigurationProxy(bundle);
     }
 
     public static ReleaseConfigurationFactory getInstance() {

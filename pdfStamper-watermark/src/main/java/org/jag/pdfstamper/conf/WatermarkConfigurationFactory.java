@@ -33,7 +33,7 @@ public class WatermarkConfigurationFactory {
     private final StamperBundle bundle;
 
     private WatermarkConfigurationFactory(final StamperBundle bundle) {
-        this.bundle = bundle;
+        this.bundle = new ConfigurationProxy(bundle);
     }
 
     public static WatermarkConfigurationFactory getInstance() {
