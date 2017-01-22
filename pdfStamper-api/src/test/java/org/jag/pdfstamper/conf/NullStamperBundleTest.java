@@ -13,9 +13,7 @@
  */
 package org.jag.pdfstamper.conf;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.assertNotNull;
+import static com.google.common.truth.Truth.assertThat;
 
 import java.text.DateFormat;
 
@@ -31,134 +29,98 @@ import com.itextpdf.text.Font.FontFamily;
  */
 public class NullStamperBundleTest {
     private static final float PRECISION = 0.00001f;
-    private NullStamperBundle bundle;
+    private NullStamperBundle underTest;
 
-    /**
-     * @throws java.lang.Exception
-     */
     @Before
     public void setUp() throws Exception {
-        bundle = new NullStamperBundle();
+        underTest = new NullStamperBundle();
     }
 
-    /**
-     * Test method for {@link NullStamperBundle#getProperty(java.lang.String)}.
-     */
     @Test
-    public void testGetPropertyString() {
-        final String property = bundle.getProperty("property");
-        assertNotNull(property);
-        assertEquals("", property);
+    public void getPropertyString() {
+        final String property = underTest.getProperty("property");
+
+        assertThat(property).isNotNull();
+        assertThat(property).isEmpty();
     }
 
-    /**
-     * Test method for {@link NullStamperBundle#getProperty(java.lang.String)}.
-     */
     @Test
-    public void testGetPropertyStringNull() {
-        final String property = bundle.getProperty("propertyNull");
-        assertNotNull("is null", property);
-        assertEquals("not blank", "", property);
+    public void getPropertyStringNull() {
+        final String property = underTest.getProperty("propertyNull");
+
+        assertThat(property).isNotNull();
+        assertThat(property).isEmpty();
     }
 
-    /**
-     * Test method for {@link NullStamperBundle#getProperty(java.lang.String, java.lang.String)}.
-     */
     @Test
-    public void testGetPropertyStringString() {
+    public void getPropertyStringString() {
         final String defaultValue = "defaultValue";
-        final String property = bundle.getProperty("property", defaultValue);
-        assertNotNull("is null", property);
-        assertEquals("is not the default value", defaultValue, property);
+        final String property = underTest.getProperty("property", defaultValue);
+
+        assertThat(property).isNotNull();
+        assertThat(property).isEqualTo(defaultValue);
     }
 
-    /**
-     * Test method for {@link NullStamperBundle#getBooleanProperty(java.lang.String)}.
-     */
     @Test
-    public void testGetBooleanProperty() {
-        assertFalse(bundle.getBooleanProperty("property"));
+    public void getBooleanProperty() {
+        assertThat(underTest.getBooleanProperty("property")).isFalse();
     }
 
-    /**
-     * Test method for {@link NullStamperBundle#getIntProperty(java.lang.String)}.
-     */
     @Test
-    public void testGetIntPropertyString() {
-        assertEquals(0, bundle.getIntProperty("property"));
+    public void getIntPropertyString() {
+        assertThat(underTest.getIntProperty("property")).isEqualTo(0);
     }
 
-    /**
-     * Test method for {@link NullStamperBundle#getIntProperty(java.lang.String, int)}.
-     */
     @Test
-    public void testGetIntPropertyStringInt() {
+    public void getIntPropertyStringInt() {
         final int defaultValue = 10;
-        assertEquals(defaultValue, bundle.getIntProperty("property", defaultValue));
+
+        assertThat(underTest.getIntProperty("property", defaultValue)).isEqualTo(defaultValue);
     }
 
-    /**
-     * Test method for {@link NullStamperBundle#getIntArrayProperty(java.lang.String)}.
-     */
     @Test
-    public void testGetIntArrayProperty() {
-        assertEquals(0, bundle.getIntArrayProperty("property").length);
+    public void getIntArrayProperty() {
+        assertThat(underTest.getIntArrayProperty("property")).isNotNull();
+        assertThat(underTest.getIntArrayProperty("property")).isEmpty();
     }
 
-    /**
-     * Test method for {@link NullStamperBundle#getFloatProperty(java.lang.String)}.
-     */
     @Test
-    public void testGetFloatPropertyString() {
-        assertEquals(0f, bundle.getFloatProperty("property"), PRECISION);
+    public void getFloatPropertyString() {
+        assertThat(underTest.getFloatProperty("property")).isWithin(PRECISION).of(0f);
     }
 
-    /**
-     * Test method for {@link NullStamperBundle#getFloatProperty(java.lang.String, float)}.
-     */
     @Test
-    public void testGetFloatPropertyStringFloat() {
+    public void getFloatPropertyStringFloat() {
         final float defaultValue = 1.23456f;
-        assertEquals(defaultValue, bundle.getFloatProperty("property", defaultValue), PRECISION);
+        assertThat(underTest.getFloatProperty("property", defaultValue)).isWithin(PRECISION).of(defaultValue);
     }
 
-    /**
-     * Test method for {@link NullStamperBundle#getFloatArrayProperty(java.lang.String)}.
-     */
     @Test
-    public void testGetFloatArrayProperty() {
-        assertEquals(0, bundle.getFloatArrayProperty("property").length);
+    public void getFloatArrayProperty() {
+        assertThat(underTest.getFloatArrayProperty("property")).isEmpty();
     }
 
-    /**
-     * Test method for {@link NullStamperBundle#getDateFormat(java.lang.String)}.
-     */
     @Test
-    public void testGetDateFormat() {
-        final DateFormat dateFormat = bundle.getDateFormat("property");
+    public void getDateFormat() {
+        final DateFormat dateFormat = underTest.getDateFormat("property");
 
-        assertNotNull("is null", dateFormat);
-        assertEquals("is not system DateFormat", DateFormat.getDateInstance(), dateFormat);
+        assertThat(dateFormat).isNotNull();
+        assertThat(dateFormat).isEqualTo(DateFormat.getDateInstance());
     }
 
-    /**
-     * Test method for {@link NullStamperBundle#getFont(java.lang.String)}.
-     */
     @Test
-    public void testGetFont() {
-        final Font font = bundle.getFont("property");
-        assertNotNull(font);
-        assertEquals(FontFamily.HELVETICA, font.getFamily());
+    public void getFont() {
+        final Font font = underTest.getFont("property");
+
+        assertThat(font).isNotNull();
+        assertThat(font.getFamily()).isEqualTo(FontFamily.HELVETICA);
     }
 
-    /**
-     * Test method for {@link NullStamperBundle#getColor(java.lang.String)}.
-     */
     @Test
-    public void testGetColor() {
-        final BaseColor color = bundle.getColor("property");
-        assertNotNull("is null", color);
-        assertEquals("is not BLACK", BaseColor.BLACK, color);
-    }
+    public void getColor() {
+        final BaseColor color = underTest.getColor("property");
 
+        assertThat(color).isNotNull();
+        assertThat(color).isEqualTo(BaseColor.BLACK);
+    }
 }
