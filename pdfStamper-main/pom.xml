@@ -1,43 +1,54 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
-	<modelVersion>4.0.0</modelVersion>
-	<parent>
-		<groupId>org.jag</groupId>
-		<artifactId>pdfStamper</artifactId>
-		<version>1.0.0-SNAPSHOT</version>
-	</parent>
-	<artifactId>pdfStamper-main</artifactId>
-	
-	<name>pdfStamper</name>
-	
-	<build>
-		<finalName>pdfStamper</finalName>
-	</build>
+    xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <parent>
+        <groupId>org.jag</groupId>
+        <artifactId>pdfStamper</artifactId>
+        <version>1.0.0-SNAPSHOT</version>
+    </parent>
+    <artifactId>pdfStamper-main</artifactId>
 
-	<dependencies>
-		<dependency>
-			<groupId>org.jag</groupId>
-			<artifactId>pdfStamper-api</artifactId>
-			<version>1.0.0-SNAPSHOT</version>
-			<scope>provided</scope>
-		</dependency>
-		<dependency>
-			<groupId>org.jag</groupId>
-			<artifactId>pdfStamper-preliminary</artifactId>
-			<version>1.0.0-SNAPSHOT</version>
-			<scope>provided</scope>
-		</dependency>
-		<dependency>
-			<groupId>org.jag</groupId>
-			<artifactId>pdfStamper-release</artifactId>
-			<version>1.0.0-SNAPSHOT</version>
-			<scope>provided</scope>
-		</dependency>
-		<dependency>
-			<groupId>org.jag</groupId>
-			<artifactId>pdfStamper-watermark</artifactId>
-			<version>1.0.0-SNAPSHOT</version>
-			<scope>provided</scope>
-		</dependency>
-	</dependencies>
+    <name>pdfStamper Main</name>
+    <description>Executable</description>
+
+    <build>
+        <finalName>pdfStamper</finalName>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-jar-plugin</artifactId>
+                <configuration>
+                    <archive>
+                        <manifest>
+                            <addClasspath>true</addClasspath>
+                            <mainClass>org.jag.pdfstamper.Main</mainClass>
+                        </manifest>
+                    </archive>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+
+    <dependencies>
+        <dependency>
+            <groupId>org.jag</groupId>
+            <artifactId>pdfStamper-api</artifactId>
+            <version>1.0.0-SNAPSHOT</version>
+        </dependency>
+        <dependency>
+            <groupId>org.jag</groupId>
+            <artifactId>pdfStamper-preliminary</artifactId>
+            <version>1.0.0-SNAPSHOT</version>
+        </dependency>
+        <dependency>
+            <groupId>org.jag</groupId>
+            <artifactId>pdfStamper-release</artifactId>
+            <version>1.0.0-SNAPSHOT</version>
+        </dependency>
+        <dependency>
+            <groupId>org.jag</groupId>
+            <artifactId>pdfStamper-watermark</artifactId>
+            <version>1.0.0-SNAPSHOT</version>
+        </dependency>
+    </dependencies>
 </project>

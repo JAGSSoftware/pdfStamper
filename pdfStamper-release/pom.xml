@@ -7,6 +7,10 @@
 		<version>1.0.0-SNAPSHOT</version>
 	</parent>
 	<artifactId>pdfStamper-release</artifactId>
+
+	<name>pdfStamper Release</name>
+	<description>Release configuration of the stamper</description>
+
 	<dependencies>
 		<dependency>
 			<groupId>org.jag</groupId>

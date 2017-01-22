@@ -7,6 +7,10 @@
 		<version>1.0.0-SNAPSHOT</version>
 	</parent>
 	<artifactId>pdfStamper-preliminary</artifactId>
+
+	<name>pdfStamper Preliminary</name>
+	<description>Preliminary configuration of the stamper</description>
+
 	<dependencies>
 		<dependency>
 			<groupId>org.jag</groupId>
