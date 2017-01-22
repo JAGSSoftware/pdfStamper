@@ -27,7 +27,7 @@ import com.google.common.base.MoreObjects;
  * @author Jose A. Garcia
  */
 public class WatermarkConfigurationFactory {
-    private static final String CONF_FILENAME = "preliminary_configuration";
+    private static final String CONF_FILENAME = "watermark_configuration";
     private static final Logger LOGGER = LoggerFactory.getLogger(WatermarkConfigurationFactory.class);
     private static final Map<String, WatermarkConfigurationFactory> instances = new HashMap<>();
     private final StamperBundle bundle;
