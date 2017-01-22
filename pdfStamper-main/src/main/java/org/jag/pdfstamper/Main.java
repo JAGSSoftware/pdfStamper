@@ -38,7 +38,6 @@ import com.itextpdf.text.pdf.PdfReader;
  * @author Jose A. Garcia
  */
 public class Main {
-    /** Logger. */
     private static final Logger LOGGER = LoggerFactory.getLogger(Main.class);
 
     /** Name for the input file argument (short). */
@@ -87,10 +86,7 @@ public class Main {
     /** PDF Stamp writer object. */
     private StampWriter stampWriter;
 
-    /**
-     * Constructor.
-     */
-    Main() {
+    private Main() {
         for (final Option option : getOptions()) {
             options.addOption(option);
         }
