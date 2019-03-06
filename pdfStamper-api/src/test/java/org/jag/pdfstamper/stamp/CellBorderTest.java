@@ -26,6 +26,7 @@ package org.jag.pdfstamper.stamp;
 import com.itextpdf.text.pdf.PdfPCell;
 import org.junit.Test;
 
+import static com.google.common.truth.Truth.assertThat;
 import static org.junit.Assert.assertEquals;
 
 /**
@@ -35,21 +36,25 @@ public class CellBorderTest {
 
     @Test
     public void left() {
-        assertEquals(PdfPCell.LEFT, CellBorder.LEFT.value());
+        assertThat(CellBorder.LEFT.value()).isEqualTo(PdfPCell.LEFT);
+        assertEquals(CellBorder.LEFT.value(), PdfPCell.LEFT);
     }
 
     @Test
     public void right() {
-        assertEquals(PdfPCell.RIGHT, CellBorder.RIGHT.value());
+        assertThat(CellBorder.RIGHT.value()).isEqualTo(PdfPCell.RIGHT);
+        assertEquals(CellBorder.RIGHT.value(), PdfPCell.RIGHT);
     }
 
     @Test
     public void top() {
-        assertEquals(PdfPCell.TOP, CellBorder.TOP.value());
+        assertThat(CellBorder.TOP.value()).isEqualTo(PdfPCell.TOP);
+        assertEquals(CellBorder.TOP.value(), PdfPCell.TOP);
     }
 
     @Test
     public void bottom() {
-        assertEquals(PdfPCell.BOTTOM, CellBorder.BOTTOM.value());
+        assertThat(CellBorder.BOTTOM.value()).isEqualTo(PdfPCell.BOTTOM);
+        assertEquals(CellBorder.BOTTOM.value(), PdfPCell.BOTTOM);
     }
 }
