@@ -4,7 +4,7 @@
     <parent>
         <groupId>org.jag.pdfstamper</groupId>
         <artifactId>pdfStamper</artifactId>
-        <version>19.1.0-SNAPSHOT</version>
+        <version>3.0.1-SNAPSHOT</version>
     </parent>
     <artifactId>pdfStamper-watermark</artifactId>
 
